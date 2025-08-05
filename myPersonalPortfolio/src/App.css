@@ -27,6 +27,93 @@
   }
 }
 
+body {
+  background: #181818;
+  color: #fff;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.custom-navbar {
+  background: #181818 !important;
+  border-bottom: 1px solid #222;
+  padding: 0.5rem 0;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-left .logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+.navbar-center .nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links .nav-link {
+  color: #fff !important;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+.nav-links .nav-link:hover {
+  color: #00bfae !important;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.7rem;
+}
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.3rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.icon-link:hover {
+  border-color: #00bfae;
+  color: #00bfae;
+}
+
+.connect-btn {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.connect-btn:hover {
+  border-color: #00bfae;
+  color: #00bfae;
+}
+
+
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
