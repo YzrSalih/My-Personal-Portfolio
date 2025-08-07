@@ -1,8 +1,8 @@
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useState, useEffect } from 'react';
-import codezyLogo from '../assets/Img/codezyy.png';
+import codezyLogo from '../assets/Img/_CODEZY (2).png';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   const [activeLink, setActiveLink] = useState('home');
@@ -20,6 +20,10 @@ const NavBar = () => {
     }, []);
     const onUpdateActiveLink = (value) => {
         setActiveLink(value);
+        const section = document.getElementById(value);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
     };
   return (
     <Navbar expand="lg" className={`custom-navbar ${scrolled ? 'scrolled' : ''}`}> 
@@ -32,11 +36,11 @@ const NavBar = () => {
                 src={codezyLogo}
                 alt="Codezy Logo"
                 style={{
-                  width: '160px',
+                  width: '200px',
                   height: 'auto',
-                  maxWidth: '160px',
+                  maxWidth: '200px',
                   display: 'block',
-                  margin: '0 20px 0 0',
+                  margin: '20px 20px 0 0', // üstten 20px boşluk
                   objectFit: 'contain',
                   verticalAlign: 'middle'
                 }}
@@ -45,13 +49,13 @@ const NavBar = () => {
           </div>
           {/* Menü Linkleri - Orta */}
           <div className="navbar-center" style={{ display: 'flex', alignItems: 'center', flex: '1 1 auto', justifyContent: 'center' }}>
-            <Nav className="nav-links" style={{ display: 'flex', gap: '48px', alignItems: 'center' }}>
-              <Nav.Link href="#home" className={activeLink === 'home' ? 'active' : ''} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
+            <div className="nav-links" style={{ display: 'flex', gap: '48px', alignItems: 'center' }}>
+              <NavLink to="/" className={({ isActive }) => isActive ? 'navbar-link active' : 'navbar-link'} style={{ textDecoration: 'none', color: '#fff', fontWeight: 600, fontSize: '1.1rem' }}>Home</NavLink>
               <span style={{ fontSize: '22px', color: '#fff', fontWeight: 'bold', margin: '0 8px' }}>|</span>
-              <Nav.Link href="#skills" className={activeLink === 'skills' ? 'active' : ''} onClick={() => onUpdateActiveLink('skills')}>Skills</Nav.Link>
+              <NavLink to="/skills" className={({ isActive }) => isActive ? 'navbar-link active' : 'navbar-link'} style={{ textDecoration: 'none', color: '#fff', fontWeight: 600, fontSize: '1.1rem' }}>Skills</NavLink>
               <span style={{ fontSize: '22px', color: '#fff', fontWeight: 'bold', margin: '0 8px' }}>|</span>
-              <Nav.Link href="#projects" className={activeLink === 'projects' ? 'active' : ''} onClick={() => onUpdateActiveLink('projects')}>Projects</Nav.Link>
-            </Nav>
+              <NavLink to="/projects" className={({ isActive }) => isActive ? 'navbar-link active' : 'navbar-link'} style={{ textDecoration: 'none', color: '#fff', fontWeight: 600, fontSize: '1.1rem' }}>Projects</NavLink>
+            </div>
           </div>
           {/* Sosyal ve Buton - Sağ */}
           <div className="navbar-right" style={{ display: 'flex', alignItems: 'center', flex: '0 0 auto', gap: '16px' }}>

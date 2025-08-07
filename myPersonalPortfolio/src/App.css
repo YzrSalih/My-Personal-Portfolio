@@ -34,7 +34,7 @@ body {
 }
 
 .custom-navbar {
-  background: #181818 !important;
+  background: linear-gradient(120deg, #1a0033 0%, #0a0a23 100%) !important;
   border-bottom: 1px solid #222;
   padding: 0.5rem 0;
   position: fixed;
@@ -71,7 +71,7 @@ body {
   transition: color 0.2s;
 }
 .nav-links .nav-link:hover {
-  color: #00bfae !important;
+  color: #a18aff !important;
 }
 
 .navbar-right {
@@ -97,8 +97,8 @@ body {
   transition: border-color 0.2s, color 0.2s;
 }
 .icon-link:hover {
-  border-color: #00bfae;
-  color: #00bfae;
+  border-color: #a18aff;
+  color: #a18aff;
 }
 
 .connect-btn {
