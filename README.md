@@ -1,2 +1,3 @@
 # My-Personal-Portfolio
-<img width="1679" height="941" alt="image" src="https://github.com/user-attachments/assets/7ae1b43a-c704-445a-9907-3785c9c2d49b" />
+<img width="1680" height="946" alt="image" src="https://github.com/user-attachments/assets/fc752dc3-da99-484e-867c-349f224e5da0" />
+
