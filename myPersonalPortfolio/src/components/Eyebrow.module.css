@@ -1,0 +1,5 @@
+.eyebrow { align-self:flex-start; display:inline-block; font-size:.7rem; letter-spacing:2px; font-weight:700; text-transform:uppercase; color:#a18aff; background:rgba(161,138,255,0.12); padding:8px 16px; border:1px solid rgba(161,138,255,0.35); border-radius:999px; backdrop-filter:blur(6px); box-shadow:0 4px 18px -4px rgba(108,71,255,0.45); line-height:1; position:relative; width:auto; margin-bottom:26px; }
+/* Optional tone variants */
+.inverse { background:rgba(255,255,255,0.15); color:#fff; border-color:rgba(255,255,255,0.4); }
+.center { margin-left:auto; margin-right:auto; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(38px) scale(.95); } to { opacity:1; transform:translateY(0) scale(1); } }
