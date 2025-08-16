@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { useState, useEffect, useRef } from 'react';
 import codezyLogo from '../assets/Img/_CODEZY (2).png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useIsMobile from './hooks/useIsMobile';
 
 const NavBar = () => {
@@ -11,6 +11,9 @@ const NavBar = () => {
   const isMobile = useIsMobile(820);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const onScroll = () => {
       if (window.scrollY > 50) {
@@ -22,6 +25,7 @@ const NavBar = () => {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
     const section = document.getElementById(value);
@@ -30,25 +34,42 @@ const NavBar = () => {
     }
     setMenuOpen(false);
   };
+
+  // close menu automatically on route change (guarantees scroll unlock)
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
   // close on click outside
-  useEffect(()=>{
-    if(!menuOpen) return;
-    const handler = (e)=>{ if(menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false); };
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false); };
     document.addEventListener('mousedown', handler);
-    return ()=> document.removeEventListener('mousedown', handler);
-  },[menuOpen]);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [menuOpen]);
+
   // Escape key closes
-  useEffect(()=>{
-    if(!menuOpen) return; const onKey = (e)=>{ if(e.key==='Escape') setMenuOpen(false); }; document.addEventListener('keydown', onKey); return ()=> document.removeEventListener('keydown', onKey); },[menuOpen]);
-  // prevent body scroll when menu open
-  useEffect(()=>{ document.body.style.overflow = menuOpen ? 'hidden' : ''; },[menuOpen]);
+  useEffect(() => {
+    if (!menuOpen) return; const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false); }; document.addEventListener('keydown', onKey); return () => document.removeEventListener('keydown', onKey); }, [menuOpen]);
+
+  // prevent body scroll when menu open (with cleanup to always restore)
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previous; };
+  }, [menuOpen]);
+
+  // Add route-change body overflow reset effect to guarantee scroll restored after navigation.
+  useEffect(() => { document.body.style.overflow=''; }, [location.pathname]);
+
   return (
-    <Navbar expand="lg" className={`custom-navbar ${scrolled ? 'scrolled' : ''}`}> 
+    <Navbar expand="lg" className={`custom-navbar ${scrolled ? 'scrolled' : ''}`}>
       <Container fluid>
         <div className="navbar-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           {/* Logo */}
           <div className="navbar-left" style={{ display: 'flex', alignItems: 'center', flex: '0 0 auto' }}>
-            <Navbar.Brand href="#home">
+            <Navbar.Brand onClick={() => { navigate('/'); setActiveLink('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
               <img
                 src={codezyLogo}
                 alt="Codezy Logo"
@@ -97,7 +118,7 @@ const NavBar = () => {
               className="hamburger"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
-              onClick={()=>setMenuOpen(true)}
+              onClick={() => setMenuOpen(true)}
             >
               <span></span><span></span><span></span>
             </button>
@@ -106,10 +127,10 @@ const NavBar = () => {
       </Container>
       {isMobile && (
         <div ref={menuRef} className={`mobile-menu ${menuOpen ? 'show' : ''}`}>
-          <button type="button" className="menu-close" aria-label="Close menu" onClick={()=>setMenuOpen(false)}>×</button>
-          <NavLink to="/" onClick={()=>onUpdateActiveLink('home')} className={({ isActive }) => isActive ? 'mobile-link active' : 'mobile-link'}>Home</NavLink>
-          <NavLink to="/skills" onClick={()=>onUpdateActiveLink('skills')} className={({ isActive }) => isActive ? 'mobile-link active' : 'mobile-link'}>Skills</NavLink>
-          <NavLink to="/projects" onClick={()=>onUpdateActiveLink('projects')} className={({ isActive }) => isActive ? 'mobile-link active' : 'mobile-link'}>Projects</NavLink>
+          <button type="button" className="menu-close" aria-label="Close menu" onClick={() => setMenuOpen(false)}>×</button>
+          <NavLink to="/" onClick={() => onUpdateActiveLink('home')} className={({ isActive }) => isActive ? 'mobile-link active' : 'mobile-link'}>Home</NavLink>
+          <NavLink to="/skills" onClick={() => onUpdateActiveLink('skills')} className={({ isActive }) => isActive ? 'mobile-link active' : 'mobile-link'}>Skills</NavLink>
+          <NavLink to="/projects" onClick={() => onUpdateActiveLink('projects')} className={({ isActive }) => isActive ? 'mobile-link active' : 'mobile-link'}>Projects</NavLink>
         </div>
       )}
     </Navbar>

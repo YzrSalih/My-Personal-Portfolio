@@ -2,6 +2,11 @@ import React, { useMemo, useState } from "react";
 import styles from "./Projects.module.css";
 import Eyebrow from './Eyebrow';
 import Footer from './Footer'; // added
+// Import images so Vite bundles them (fix for prod)
+import imgPortfolio from '../assets/Img/codezy3.png';
+import imgDashboard from '../assets/Img/codezy4.png';
+import imgBlog from '../assets/Img/codezy5.png';
+import imgLanding from '../assets/Img/codezy2.svg';
 
 // Sample project data (can be moved to a separate file later)
 const Projects = () => {
@@ -9,7 +14,7 @@ const Projects = () => {
     {
       id: 1,
       title: "Personal Portfolio",
-      image: "/src/assets/Img/codezy3.png",
+      image: imgPortfolio,
       description:
         "Modern portfolio focusing on clean component architecture, motion and accessibility.",
       technologies: ["React", "Vite", "CSS"],
@@ -21,7 +26,7 @@ const Projects = () => {
     {
       id: 2,
       title: "E‑Commerce Dashboard",
-      image: "/src/assets/Img/codezy4.png",
+      image: imgDashboard,
       description:
         "Analytics driven admin dashboard with product, order and user management views.",
       technologies: ["React", "TypeScript", "Redux"],
@@ -32,7 +37,7 @@ const Projects = () => {
     {
       id: 3,
       title: "Blog Platform",
-      image: "/src/assets/Img/codezy5.png",
+      image: imgBlog,
       description:
         "Markdown publishing interface with search, tagging and category filters.",
       technologies: ["React", "Node.js", "MongoDB"],
@@ -43,7 +48,7 @@ const Projects = () => {
     {
       id: 4,
       title: "Landing Page Kit",
-      image: "/src/assets/Img/codezy2.svg",
+      image: imgLanding,
       description:
         "Reusable section + layout kit for rapid marketing page prototyping.",
       technologies: ["React", "Framer", "Sass"],
