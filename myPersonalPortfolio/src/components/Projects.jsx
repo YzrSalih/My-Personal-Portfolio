@@ -1,13 +1,109 @@
-import React from "react";
-import "./Home.css";
+import React, { useMemo, useState } from "react";
+import styles from "./Projects.module.css";
 
+// Sample project data (can be moved to a separate file later)
 const Projects = () => {
+  const projects = useMemo(() => [
+    {
+      id: 1,
+      title: "Personal Portfolio",
+      image: "/src/assets/Img/codezy3.png",
+      description:
+        "Modern portfolio focusing on clean component architecture, motion and accessibility.",
+      technologies: ["React", "Vite", "CSS"],
+      repo: "https://github.com/YzrSalih",
+      live: "#",
+      category: "frontend",
+      featured: true,
+    },
+    {
+      id: 2,
+      title: "E‑Commerce Dashboard",
+      image: "/src/assets/Img/codezy4.png",
+      description:
+        "Analytics driven admin dashboard with product, order and user management views.",
+      technologies: ["React", "TypeScript", "Redux"],
+      repo: "https://github.com/YzrSalih",
+      live: "#",
+      category: "dashboard",
+    },
+    {
+      id: 3,
+      title: "Blog Platform",
+      image: "/src/assets/Img/codezy5.png",
+      description:
+        "Markdown publishing interface with search, tagging and category filters.",
+      technologies: ["React", "Node.js", "MongoDB"],
+      repo: "https://github.com/YzrSalih",
+      live: "#",
+      category: "fullstack",
+    },
+    {
+      id: 4,
+      title: "Landing Page Kit",
+      image: "/src/assets/Img/codezy2.svg",
+      description:
+        "Reusable section + layout kit for rapid marketing page prototyping.",
+      technologies: ["React", "Framer", "Sass"],
+      repo: "https://github.com/YzrSalih",
+      live: "#",
+      category: "frontend",
+    },
+  ], []);
+
+  const categories = useMemo(() => ["all", ...Array.from(new Set(projects.map(p => p.category)))], [projects]);
+  const [activeCat, setActiveCat] = useState("all");
+  const filtered = activeCat === "all" ? projects : projects.filter(p => p.category === activeCat);
+
   return (
-    <section className="projects-section" style={{ minHeight: '60vh', padding: '64px 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h2 style={{ color: '#a18aff', fontSize: '2.2rem', fontWeight: 800, marginBottom: '32px' }}>Projects</h2>
-      <div style={{ color: '#eaeaea', fontSize: '1.15rem', maxWidth: '700px', textAlign: 'center' }}>
-        {/* Buraya projelerinizi ekleyebilirsiniz */}
-        Portfolio, E-commerce, Blog, Dashboard, Landing Page, ...
+    <section id="projects" className={styles.projectsSection}>
+      <div className={styles.bgDecor} aria-hidden="true" />
+      <div className={styles.shell}>
+        <header className={styles.head}>
+          <div className={styles.headTop}>
+            <h2 className={styles.heading}>Projects<span className={styles.headingAccent} /></h2>
+            <p className={styles.lead}>Selected builds showcasing UI detail, state management patterns and integration across the stack.</p>
+          </div>
+          <div className={styles.filters}>
+            {categories.map(cat => (
+              <button
+                key={cat}
+                className={cat === activeCat ? `${styles.filterChip} ${styles.active}` : styles.filterChip}
+                onClick={() => setActiveCat(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </header>
+        <div className={styles.grid}> {/* new grid */}
+          {filtered.map((p, i) => (
+            <article
+              key={p.id}
+              className={`${styles.card} ${p.featured ? styles.featured : ""} ${styles.fadeIn}`}
+              style={{ "--i": i }}
+            >
+              <div className={styles.media}>
+                <img src={p.image} alt={p.title} loading="lazy" />
+                <div className={styles.mediaOverlay} />
+                <div className={styles.indexTag}>0{i + 1}</div>
+                <ul className={styles.techChips}>
+                  {p.technologies.map(t => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className={styles.body}> {/* card body */}
+                <h3 className={styles.title}>{p.title}</h3>
+                <p className={styles.desc}>{p.description}</p>
+                <div className={styles.actions}>
+                  {p.live && <a className={styles.actionPrimary} href={p.live} target="_blank" rel="noopener noreferrer">Live ↗</a>}
+                  {p.repo && <a className={styles.actionGhost} href={p.repo} target="_blank" rel="noopener noreferrer">Code</a>}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
