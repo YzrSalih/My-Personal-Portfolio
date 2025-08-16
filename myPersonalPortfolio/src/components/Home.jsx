@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import codezyLogoWhite from "../assets/Img/codezy4.png"; // white logo
 import Footer from "./Footer"; // added
+import useIsMobile from './hooks/useIsMobile';
+import HomeMobile from './HomeMobile';
 
 const Home = () => {
+  const isMobile = useIsMobile(820);
+
   const titles = ["Web Developer", "Frontend Developer", "Fullstack Developer"];
   const [currentTitle, setCurrentTitle] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
@@ -26,6 +30,8 @@ const Home = () => {
     }
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, currentTitle, titles, typingSpeed]);
+
+  if (isMobile) return <HomeMobile />;
 
   return (
     <div className={styles.pageWrap}>
