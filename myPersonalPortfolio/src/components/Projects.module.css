@@ -3,7 +3,7 @@
   radial-gradient(circle at 12% 22%, rgba(161,138,255,0.18), transparent 60%),
   radial-gradient(circle at 88% 78%, rgba(108,71,255,0.16), transparent 65%); opacity:.55; mix-blend-mode:screen; }
 .shell { width:100%; max-width:1680px; margin:0 auto; padding:0 clamp(40px,5vw,120px); }
-.head { display:flex; flex-direction:column; gap:26px; margin:0 0 46px; max-width:960px; }
+.head { display:flex; flex-direction:column; gap:12px; margin:0 0 46px; max-width:960px; }
 .lead { font-size:1.05rem; line-height:1.7; color:#d9d5e9; margin:0; }
 .filters { display:flex; flex-wrap:wrap; gap:12px; }
 .filterChip { background:rgba(255,255,255,0.05); border:1px solid rgba(161,138,255,0.35); color:#dcd6f4; padding:10px 18px; border-radius:999px; font-size:.72rem; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; cursor:pointer; position:relative; overflow:hidden; transition:background .25s,border-color .25s,color .25s,transform .25s; backdrop-filter:blur(6px); }
@@ -37,7 +37,7 @@ a.actionGhost:hover { background:rgba(255,255,255,0.16); color:#fff; }
 @keyframes cardIn { from { opacity:0; transform:translateY(40px) scale(.94); } to { opacity:1; transform:translateY(0) scale(1); } }
 
 /* .eyebrow sınıfı ortak bileşene taşındı; gerektiğinde ek boşluk için wrapper içinde margin eklemek istersen burada override edebilirsin */
-.projectsTitle { font-size:clamp(2.6rem,5vw,4.1rem); font-weight:800; line-height:1.05; margin:0 0 26px; letter-spacing:1px; position:relative; }
+.projectsTitle { font-size:clamp(2.6rem,5vw,4.1rem); font-weight:800; line-height:1.05; margin:0 0 28px; letter-spacing:1px; position:relative; }
 .projectsTitleGradient { background:linear-gradient(90deg,#a18aff,#6c47ff 55%,#a18aff 90%); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .projectsTitleGlow { position:absolute; inset:0; background:linear-gradient(90deg,#6c47ff,#a18aff); filter:blur(44px) opacity(.35); pointer-events:none; }
 .projectsLead { max-width:760px; font-size:1.05rem; line-height:1.75; color:#d9d5e9; margin:0 0 24px; animation:fadeUp .85s cubic-bezier(.22,.99,.39,1.01) .15s both; }

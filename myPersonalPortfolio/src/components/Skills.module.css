@@ -20,7 +20,7 @@
 .skillsShell { width:100%; max-width:1580px; margin:0 auto; padding:0 clamp(40px,5vw,120px); position:relative; z-index:2; display:flex; flex-direction:column; gap:72px; }
 
 .headerBlock { max-width:960px; }
-.title { font-size:clamp(2.6rem,5vw,4.1rem); font-weight:800; line-height:1.05; margin:0 0 26px; letter-spacing:1px; position:relative; }
+.title { font-size:clamp(2.6rem,5vw,4.1rem); font-weight:800; line-height:1.05; margin:0 0 14px; letter-spacing:1px; position:relative; }
 .titleGradient { background:linear-gradient(90deg,#a18aff,#6c47ff 55%,#a18aff 90%); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .titleGlow { position:absolute; inset:0; background:linear-gradient(90deg,#6c47ff,#a18aff); filter:blur(44px) opacity(.35); pointer-events:none; }
 .subtitle { max-width:760px; font-size:1.05rem; line-height:1.75; color:#d9d5e9; margin:0 0 10px; animation:fadeUp .85s cubic-bezier(.22,.99,.39,1.01) .15s both; }
