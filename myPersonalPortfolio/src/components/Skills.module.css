@@ -1,0 +1,81 @@
+/* Skills Page Themed Styles (matching Home.module.css aesthetic) */
+.skillsPage {
+  min-height:100vh;
+  width:100%;
+  padding:140px 0 90px;
+  background:linear-gradient(120deg,#1a0033 0%, #0a0a23 100%);
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  display:flex;
+}
+
+/* Soft ambient glow */
+.skillsPage:before { content:""; position:absolute; inset:0; background:radial-gradient(circle at 24% 30%, rgba(162,138,255,0.25), transparent 65%), radial-gradient(circle at 70% 68%, rgba(108,71,255,0.18), transparent 70%); filter:blur(40px); opacity:.55; pointer-events:none; }
+/* Fine grain / texture */
+.skillsPage:after { content:""; position:absolute; inset:0; background:
+ repeating-linear-gradient(60deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 6px);
+ opacity:.06; pointer-events:none; mix-blend-mode:overlay; }
+
+.skillsShell { width:100%; max-width:1580px; margin:0 auto; padding:0 clamp(40px,5vw,120px); position:relative; z-index:2; display:flex; flex-direction:column; gap:72px; }
+
+.headerBlock { max-width:960px; }
+.title { font-size:clamp(2.6rem,5vw,4.1rem); font-weight:800; line-height:1.05; margin:0 0 26px; letter-spacing:1px; position:relative; }
+.titleGradient { background:linear-gradient(90deg,#a18aff,#6c47ff 55%,#a18aff 90%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.titleGlow { position:absolute; inset:0; background:linear-gradient(90deg,#6c47ff,#a18aff); filter:blur(44px) opacity(.35); pointer-events:none; }
+.subtitle { max-width:760px; font-size:1.05rem; line-height:1.75; color:#d9d5e9; margin:0 0 10px; animation:fadeUp .85s cubic-bezier(.22,.99,.39,1.01) .15s both; }
+
+/* Categories grid */
+.categoriesGrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:52px clamp(40px,3.8vw,64px); position:relative; }
+@media (max-width:860px){ .categoriesGrid { gap:42px 40px; } }
+@media (max-width:620px){ .categoriesGrid { gap:34px 32px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); } }
+
+.categoryCard { position:relative; background:linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 70%); border:1px solid rgba(161,138,255,0.18); border-radius:30px; padding:32px 30px 34px; box-shadow:0 10px 32px -8px rgba(108,71,255,0.35),0 4px 18px -2px rgba(0,0,0,.55); display:flex; flex-direction:column; gap:26px; isolation:isolate; overflow:hidden; }
+.categoryCard:before { content:""; position:absolute; inset:0; background:radial-gradient(circle at 25% 30%, rgba(162,138,255,0.28), transparent 65%); opacity:.55; filter:blur(46px); pointer-events:none; }
+.categoryCard:after { content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(108,71,255,0.5), rgba(161,138,255,0.4)); mix-blend-mode:overlay; opacity:0; transition:opacity .6s; }
+.categoryCard:hover { box-shadow:0 22px 60px -12px rgba(108,71,255,0.55),0 8px 28px -4px rgba(0,0,0,.6); transform:translateY(-8px); }
+.categoryCard:hover:after { opacity:.25; }
+.categoryHeader { display:flex; align-items:center; justify-content:space-between; }
+.categoryTitle { margin:0; font-size:.75rem; letter-spacing:2px; font-weight:800; text-transform:uppercase; color:#cebfff; position:relative; padding-left:14px; }
+.categoryTitle:before { content:""; position:absolute; left:0; top:50%; transform:translateY(-50%); width:6px; height:6px; border-radius:50%; background:linear-gradient(90deg,#6c47ff,#a18aff); box-shadow:0 0 0 4px rgba(108,71,255,0.35), 0 0 16px 4px rgba(108,71,255,0.4); }
+
+.skillsList { display:flex; flex-direction:column; gap:18px; margin:0; padding:0; list-style:none; }
+.skillRow { display:flex; flex-direction:column; gap:8px; position:relative; }
+.skillTop { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.skillName { font-size:.83rem; font-weight:600; letter-spacing:.5px; color:#f7f6fb; }
+.skillLevel { font-size:.55rem; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:#a18aff; background:rgba(161,138,255,0.15); padding:4px 8px; border-radius:999px; border:1px solid rgba(161,138,255,0.4); }
+
+.progressBar { position:relative; width:100%; height:9px; background:rgba(255,255,255,0.06); border:1px solid rgba(161,138,255,0.28); border-radius:999px; overflow:hidden; }
+.progressFill { position:absolute; left:0; top:0; bottom:0; width:0; background:linear-gradient(90deg,#6c47ff,#a18aff); box-shadow:0 0 12px 2px rgba(108,71,255,.55); animation:growBar 1.4s cubic-bezier(.22,.99,.39,1.01) forwards; }
+
+/* Delayed fills for cascading effect */
+.skillRow:nth-child(1) .progressFill { animation-delay:.1s; }
+.skillRow:nth-child(2) .progressFill { animation-delay:.18s; }
+.skillRow:nth-child(3) .progressFill { animation-delay:.26s; }
+.skillRow:nth-child(4) .progressFill { animation-delay:.34s; }
+.skillRow:nth-child(5) .progressFill { animation-delay:.42s; }
+.skillRow:nth-child(6) .progressFill { animation-delay:.5s; }
+.skillRow:nth-child(7) .progressFill { animation-delay:.58s; }
+.skillRow:nth-child(8) .progressFill { animation-delay:.66s; }
+.skillRow:nth-child(9) .progressFill { animation-delay:.74s; }
+.skillRow:nth-child(10) .progressFill { animation-delay:.82s; }
+
+.chipsWrap { display:flex; flex-wrap:wrap; gap:10px; }
+.chip { font-size:.55rem; letter-spacing:1.3px; font-weight:700; text-transform:uppercase; color:#a18aff; background:rgba(161,138,255,0.15); padding:6px 10px; border-radius:999px; border:1px solid rgba(161,138,255,0.4); position:relative; overflow:hidden; }
+.chip:before { content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(108,71,255,0.5), rgba(161,138,255,0.4)); mix-blend-mode:overlay; opacity:0; transition:opacity .5s; }
+.chip:hover:before { opacity:.35; }
+
+/* Animations */
+@keyframes fadeUp { from { opacity:0; transform:translateY(38px) scale(.95); } to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes growBar { from { width:0; } to { width:var(--w); } }
+
+.categoryCard, .categoriesGrid { animation:fadeUp .9s cubic-bezier(.22,.99,.39,1.01) both; }
+.categoryCard:nth-child(1) { animation-delay:.1s; }
+.categoryCard:nth-child(2) { animation-delay:.18s; }
+.categoryCard:nth-child(3) { animation-delay:.26s; }
+.categoryCard:nth-child(4) { animation-delay:.34s; }
+.categoryCard:nth-child(5) { animation-delay:.42s; }
+
+/* Responsive tweaks */
+@media (max-width:860px){ .title { font-size:clamp(2.3rem,6vw,3.4rem); } }
+@media (max-width:560px){ .skillsShell { gap:56px; } .title { font-size:2.4rem; } }
