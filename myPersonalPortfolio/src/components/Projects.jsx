@@ -4,7 +4,7 @@ import Eyebrow from './Eyebrow';
 import Footer from './Footer'; // added
 // Import images so Vite bundles them (fix for prod)
 import imgPortfolio from '../assets/Img/codezy3.png';
-import imgDashboard from '../assets/Img/codezy4.png';
+import imgDashboard from '../assets/Img/codezy5.png';
 import imgBlog from '../assets/Img/codezy5.png';
 import imgLanding from '../assets/Img/codezy2.svg';
 
@@ -25,14 +25,14 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: "E‑Commerce Dashboard",
+      title: "E‑Commerce Platform",
       image: imgDashboard,
       description:
-        "Analytics driven admin dashboard with product, order and user management views.",
-      technologies: ["React", "TypeScript", "Redux"],
-      repo: "https://github.com/YzrSalih",
-      live: "#",
-      category: "dashboard",
+        "Full‑stack commerce platform: product & catalog CRUD, cart, order pipeline, role‑based admin, caching & async events.",
+      technologies: ["React", "TypeScript", "Java", "Spring Boot", "Redis"],
+      repo: "https://github.com/YzrSalih/E-Commerce-Website",
+      caseStudy: "https://github.com/YzrSalih/E-Commerce-Website#readme",
+      category: "fullstack",
     },
     {
       id: 3,
@@ -94,17 +94,20 @@ const Projects = () => {
                   <img src={p.image} alt={p.title} loading="lazy" />
                   <div className={styles.mediaOverlay} />
                   <div className={styles.indexTag}>0{i + 1}</div>
-                  <ul className={styles.techChips}>
-                    {p.technologies.map(t => (
-                      <li key={t}>{t}</li>
-                    ))}
-                  </ul>
                 </div>
+                {/* Teknoloji etiketleri artık görselin altında, absolute değil */}
+                <ul className={styles.techChips}>
+                  {p.technologies.map(t => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
                 <div className={styles.body}> {/* card body */}
                   <h3 className={styles.title}>{p.title}</h3>
                   <p className={styles.desc}>{p.description}</p>
                   <div className={styles.actions}>
-                    {p.live && <a className={styles.actionPrimary} href={p.live} target="_blank" rel="noopener noreferrer">Live ↗</a>}
+                    {/* Öncelik: caseStudy > live */}
+                    {p.caseStudy && <a className={styles.actionPrimary} href={p.caseStudy} target="_blank" rel="noopener noreferrer">Case Study ↗</a>}
+                    {!p.caseStudy && p.live && <a className={styles.actionPrimary} href={p.live} target="_blank" rel="noopener noreferrer">Live ↗</a>}
                     {p.repo && <a className={styles.actionGhost} href={p.repo} target="_blank" rel="noopener noreferrer">Code</a>}
                   </div>
                 </div>
