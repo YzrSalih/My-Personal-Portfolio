@@ -5,6 +5,11 @@ import codezyLogoWhite from "../assets/Img/codezy4.png"; // white logo
 import Footer from "./Footer"; // added
 import useIsMobile from './hooks/useIsMobile';
 import HomeMobile from './HomeMobile';
+import ExperienceDetails from './ExperienceDetails';
+import AutoPlayVideo from './AutoPlayVideo';
+import GitHubShowcase from './GitHubShowcase';
+import ghImage from '../assets/Img/image.png';
+import NeonWatch from './NeonWatch';
 
 const Home = () => {
   const isMobile = useIsMobile(820);
@@ -82,6 +87,11 @@ const Home = () => {
                     <span className={styles.certTitle}>Platform Developer I</span>
                     <span className={styles.certMeta}>Aug 2022 · ID 2492783</span>
                   </li>
+                  <li className={styles.certItem}>
+                    <span className={styles.certBadge}>Google</span>
+                    <span className={styles.certTitle}>UX Design Certificate </span>
+                    <span className={styles.certMeta}>Aug 2025</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -91,35 +101,48 @@ const Home = () => {
                   <div className={styles.sideCardHeader}><h3>Education</h3></div>
                   <ul className={styles.timeline}>
                     <li className={styles.timelineItem}>
-                      <div className={styles.itemHeading}>B.Sc. Computer Science – VIZJA University</div>
-                      <div className={styles.itemMeta}>Warsaw</div>
-                      <div className={styles.itemYear}>2019 – 2024</div>
+                      <div className={styles.itemHeading}>B.Sc. Computer Science — Akademia Ekonomiczno‑Humanistyczna w Warszawie (VIZJA University)</div>
+                      <div className={styles.itemMeta}>Warsaw · GPA 4.24</div>
+                      <div className={styles.itemYear}>Mar 2021 – Sep 2024</div>
+                      <ul className={styles.itemDetails}>
+                        <li>Algorithms & complexity</li>
+                        <li>Operating Systems</li>
+                        <li>MVC web application development</li>
+                        <li>Object-oriented programming in JavaScript</li>
+                        <li>REST-oriented web services</li>
+                        <li>Cloud-oriented web applications</li>
+                        <li>Modern frontend web application development</li>
+                        <li>Introduction to Artificial Intelligence</li>
+                      </ul>
                     </li>
                     <li className={styles.timelineItem}>
-                      <div className={styles.itemHeading}>B.Sc. Computer Science – EPITA University</div>
+                      <div className={styles.itemHeading}>EPITA: Ecole d'Ingénieurs en Informatique — Bachelor's in Computer Science</div>
                       <div className={styles.itemMeta}>Paris · Erasmus Program</div>
-                      <div className={styles.itemYear}>2021 – 2022</div>
-                    </li>
-                  </ul>
-                </div>
-                <div className={`${styles.sideCard} ${styles.experienceCard}`}>
-                  <div className={styles.sideCardHeader}><h3>Experience</h3></div>
-                  <ul className={styles.timeline}>
-                    <li className={styles.timelineItem}>
-                      <div className={styles.itemHeading}>Frontend Developer – Enresoft LLC</div>
-                      <div className={styles.itemMeta}>Part-time</div>
-                      <div className={styles.itemYear}>Mar 2024 – Present</div>
-                    </li>
-                    <li className={styles.timelineItem}>
-                      <div className={styles.itemHeading}>Full Stack Salesforce Developer – Soft Innovas</div>
-                      <div className={styles.itemMeta}>Full-time</div>
-                      <div className={styles.itemYear}>Mar 2023 – Mar 2024</div>
+                      <div className={styles.itemYear}>Sep 2022 – Jul 2023</div>
+                      <ul className={styles.itemDetails}>                        <li>Project Management Principles</li>
+                        <li>Data Flow and Computer Networks</li>
+                        <li>Data Privacy by Design</li>
+                        <li>Digital Transformation</li>
+                        <li>Introduction to Blockchain & Bitcoin</li>
+                        <li>Advanced Algorithmic</li>
+                        <li>Operating Systems: Unix</li>
+                        <li>Introduction to Python</li>
+                        <li>Relational Databases</li>
+                      </ul>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
+          <ExperienceDetails />
+          <AutoPlayVideo />
+          <GitHubShowcase
+            image={ghImage}
+            title="GitHub Profile Overview"
+            alt="Screenshot of Salih Yazar's GitHub profile overview page"
+          />
+          <NeonWatch />
         </div>
       </section>
       <Footer />

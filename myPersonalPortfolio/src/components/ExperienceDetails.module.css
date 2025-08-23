@@ -1,0 +1,89 @@
+/* Experience Details — light section with animated purple glows */
+.expSection {
+  /* layout */
+  margin-top: clamp(40px, 6vw, 80px);
+  position: relative;
+  padding: clamp(28px, 5vw, 56px) 0;
+  border-radius: 0; /* flat edges */
+  border: none;
+  background: #ffffff; /* ensure white */
+  /* full-bleed white beyond container */
+  box-shadow: 0 0 0 100vmax #ffffff;
+  clip-path: inset(0 -100vmax);
+}
+
+/* Remove ambient purple glows so no tint appears */
+.expSection:before,
+.expSection:after { content: none !important; }
+
+/* Card */
+.expCard {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  border: 1px solid #ece8ff;
+  background: #ffffff; /* white card */
+  border-radius: 22px;
+  padding: 28px clamp(18px, 4.2vw, 36px);
+  box-shadow: 0 10px 34px rgba(23, 6, 72, 0.06);
+}
+
+/* Subtle inner highlight */
+.expCard:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(140% 75% at 15% 10%, rgba(161, 138, 255, 0.12), transparent 60%),
+              radial-gradient(120% 70% at 85% 90%, rgba(108, 71, 255, 0.08), transparent 55%);
+}
+
+/* Header */
+.headerRow { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.title { margin: 0; font-size: 0.78rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; color: #3b2e7a; position: relative; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(90deg,#6c47ff,#a18aff); box-shadow: 0 0 0 5px rgba(108,71,255,0.18), 0 0 20px 6px rgba(108,71,255,0.18); }
+
+/* Timeline */
+.timeline { list-style: none; margin: 6px 0 0; padding: 0; position: relative; }
+.timeline:before { content: ""; position: absolute; left: 18px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, rgba(108,71,255,.35), rgba(161,138,255,.15)); border-radius: 2px; }
+
+/* Item */
+.item { position: relative; margin: 0 0 24px; padding: 0 0 0 48px; }
+.item:last-child { margin-bottom: 0; }
+.item:before { content: ""; position: absolute; left: 12px; top: 8px; width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(90deg,#6c47ff,#a18aff); box-shadow: 0 0 0 5px #ffffff, 0 0 0 6px rgba(108,71,255,0.25); }
+
+/* Item Header */
+.itemHeadingRow { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.itemTitle { margin: 0; font-weight: 800; font-size: 1rem; color: #1d133a; letter-spacing: .3px; }
+.emDash { opacity: .55; }
+.metaRow { margin-top: 6px; }
+.period { font-size: .68rem; font-weight: 800; letter-spacing: 1.2px; color: #5a3ff0; background: #f4f1ff; padding: 6px 12px; border-radius: 999px; border: 1px solid #e3dcff; }
+
+/* Badges */
+.badge { font-size: .62rem; letter-spacing: 1.1px; font-weight: 800; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; border: 1px solid #e3dcff; background: #f7f5ff; color: #3b2e7a; }
+.badgeSoft { background: #f4f1ff; }
+.badgeHard { background: #efeaff; }
+
+/* Bullets */
+.bullets { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 10px; color: #3a2f66; font-size: .96rem; line-height: 1.65; }
+.bullets li { position: relative; }
+.bullets li:before { content: "•"; position: absolute; left: -14px; color: #6c47ff; }
+
+/* Actions */
+.expActions { margin-top: 18px; display: flex; justify-content: flex-start; }
+.toggleBtn { cursor: pointer; border: 0; background: linear-gradient(90deg, #6c47ff 0%, #a18aff 100%); color: #ffffff; font-size: .72rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; padding: 12px 18px; border-radius: 14px; transition: transform .25s ease, box-shadow .25s ease; min-width: 190px; box-shadow: 0 10px 24px rgba(108, 71, 255, 0.35); }
+.toggleBtn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(108, 71, 255, 0.45); }
+
+/* Hover */
+.item:hover .itemTitle { text-shadow: 0 6px 24px rgba(161,138,255,0.25); }
+.item:hover:before { box-shadow: 0 0 0 5px #ffffff, 0 0 14px 4px rgba(108,71,255,0.35); }
+
+/* Responsive fit */
+@media (max-width: 1200px){ .expCard { max-width: 980px; } }
+@media (max-width: 992px){ .expCard { max-width: 860px; } }
+@media (max-width: 840px){ .expCard { max-width: none; border-radius: 18px; padding: 22px 18px; } }
+@media (max-width: 600px){ .expActions { justify-content: stretch; } .toggleBtn { width: 100%; min-width: 0; } }
+@media (max-width: 520px){ .itemTitle { font-size: .95rem; } }

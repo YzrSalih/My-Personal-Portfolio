@@ -1,0 +1,71 @@
+/* GitHub Showcase — dark panel with neon edge glow and scan animation */
+.ghSection {
+  margin-top: 0; /* ensure no purple band shows above */
+  position: relative;
+  /* Full-bleed solid black without showing page background/gaps */
+  border-radius: 0;
+  background: #000;
+  border: none;
+  /* full-bleed black beyond container without horizontal overflow */
+  box-shadow: 0 0 0 100vmax #000; /* paint black beyond container */
+  clip-path: inset(0 -100vmax);   /* prevent horizontal scroll */
+  /* restore regular sizing */
+  width: auto;
+  margin-left: 0;
+  margin-right: 0;
+  /* only vertical padding; no horizontal padding to avoid overflow */
+  padding: clamp(24px, 4.5vw, 40px) 0px;
+}
+/* Ensure no extra overlay is drawn */
+.ghSection::before { content: none !important; }
+
+/* Clean card inside the black section */
+.ghCard {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  border-radius: 26px;
+  padding: clamp(18px, 3.2vw, 26px);
+  background: #000; /* unify with section black */
+  border: 1px solid rgba(128, 156, 255, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 20px 60px rgba(10, 12, 22, 0.7);
+}
+
+.headerRow { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.title { margin:0; font-size:.78rem; letter-spacing:2px; font-weight:800; text-transform:uppercase; color:#bfc7ff; }
+.dot { width:8px; height:8px; border-radius:50%; background:linear-gradient(90deg,#6c47ff,#a18aff); box-shadow:0 0 0 4px rgba(108,71,255,0.35), 0 0 16px 4px rgba(108,71,255,0.4); }
+
+.frameWrap { position: relative; border-radius: 18px; overflow: hidden; background: #000; /* was #0f1220 */ border: 1px solid rgba(128,156,255,0.25); box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 8px 24px rgba(64,87,255,.18); }
+.screenshot { display:block; width:100%; height:auto; border-radius: inherit; filter: saturate(1.02) contrast(1.02); }
+
+/* Neon edge glow lines that move around the frame */
+.glowTop, .glowBottom, .glowLeft, .glowRight { position:absolute; pointer-events:none; filter: blur(14px); mix-blend-mode: screen; }
+.glowTop { left:-15%; right:-15%; top:-3px; height:12px; background: radial-gradient(closest-side, rgba(84,160,255,0.9), rgba(84,160,255,0) 70%); animation: edgeSlideX 8s ease-in-out infinite; }
+.glowBottom { left:-15%; right:-15%; bottom:-4px; height:12px; background: radial-gradient(closest-side, rgba(255,156,84,0.85), rgba(255,156,84,0) 70%); animation: edgeSlideX 10s ease-in-out infinite .6s; }
+.glowLeft { top:-12%; bottom:-12%; left:-5px; width:12px; background: radial-gradient(closest-side, rgba(130,180,255,0.75), rgba(130,180,255,0) 70%); animation: edgeSlideY 11s ease-in-out infinite .3s; }
+.glowRight { top:-12%; bottom:-12%; right:-5px; width:12px; background: radial-gradient(closest-side, rgba(255,170,110,0.7), rgba(255,170,110,0) 70%); animation: edgeSlideY 9.5s ease-in-out infinite 1.1s; }
+
+/* Animated scan overlay */
+.scan { position:absolute; left:0; right:0; top:-65%; height:60%; background: linear-gradient(to bottom, rgba(120,170,255,0) 0%, rgba(120,170,255,0.10) 50%, rgba(120,170,255,0) 100%); mix-blend-mode: screen; animation: scanDown 9s linear infinite; pointer-events:none; }
+
+@keyframes scanDown { 0% { transform: translateY(0); } 100% { transform: translateY(260%); } }
+@keyframes edgeSlideX { 0% { transform: translateX(-18%); } 50% { transform: translateX(18%); } 100% { transform: translateX(-18%); } }
+@keyframes edgeSlideY { 0% { transform: translateY(-12%); } 50% { transform: translateY(12%); } 100% { transform: translateY(-12%); } }
+
+/* Optional shimmer lines for subtle motion */
+.shimmer { position:absolute; inset:0; background: repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 1px, rgba(255,255,255,0) 1px 9px); opacity:.3; mix-blend-mode: overlay; animation: shimmerMove 24s linear infinite; pointer-events:none; }
+@keyframes shimmerMove { from { transform: translateX(0); } to { transform: translateX(-30%); } }
+
+/* Mobile tweaks: tighter paddings and rounded corners */
+@media (max-width: 840px){
+  .ghCard { border-radius:20px; padding:14px; }
+  .frameWrap { border-radius:14px; }
+  .headerRow { margin-bottom:10px; }
+}
+@media (max-width: 560px){
+  .ghSection { padding: 18px 0; }
+  .title { font-size:.7rem; }
+  .glowTop, .glowBottom, .glowLeft, .glowRight { filter: blur(10px); }
+}

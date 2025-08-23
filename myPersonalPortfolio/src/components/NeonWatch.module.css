@@ -1,0 +1,109 @@
+/* Full‑bleed black section, same as GitHub block */
+.watchSection { margin-top:0; position:relative; background:#000; border:none; border-radius:0; box-shadow:0 0 0 100vmax #000; clip-path:inset(0 -100vmax); padding: clamp(24px,4.5vw,40px) 0; }
+.watchSection::before { content:none !important; }
+
+.watchCard { position:relative; width:100%; max-width:1180px; margin:0 auto; /* remove frame look */ padding:0; background:transparent; border:none; box-shadow:none; border-radius:0; }
+
+/* Stage holding the watch and the two diagonal beams — make frameless */
+.stage { position:relative; /* remove visible box */ border:none; border-radius:0; overflow:visible; background:transparent; aspect-ratio: 16/6; display:grid; place-items:center; box-shadow:none; }
+
+/* Left-right layout: watch fixed on the left, content on the right */
+.stage { display:grid; grid-template-columns: minmax(320px, 560px) 1fr; align-items:center; gap: clamp(36px,5vw,80px); aspect-ratio:auto; min-height: clamp(320px, 40vw, 520px); }
+.watchWrap { display:flex; justify-content:center; }
+
+/* Diagonal orange and blue beams */
+.beam { position:absolute; pointer-events:none; filter:blur(16px); mix-blend-mode:screen; opacity:.95; }
+.beamOrange { left:-10%; top:6%; width:60%; height:22%; transform:rotate(-13deg); background:linear-gradient(90deg, rgba(255,140,80,0) 0%, rgba(255,140,80,.4) 35%, rgba(255,140,80,.8) 65%, rgba(255,140,80,.12) 100%); box-shadow:0 0 80px 16px rgba(255,140,80,.45); animation: driftX 16s ease-in-out infinite; }
+.beamBlue   { right:-12%; bottom:-6%; width:72%; height:28%; transform:rotate(15deg); background:linear-gradient(90deg, rgba(90,160,255,0) 0%, rgba(90,160,255,.45) 45%, rgba(90,160,255,.85) 70%, rgba(90,160,255,.14) 100%); box-shadow:0 0 90px 20px rgba(90,160,255,.45); animation: driftX 20s ease-in-out infinite reverse; }
+@keyframes driftX { 0% { transform:translateX(0) rotate(var(--rot, 0deg)); } 50% { transform:translateX(-2%) rotate(var(--rot, 0deg)); } 100% { transform:translateX(0) rotate(var(--rot, 0deg)); } }
+
+/* Watch body */
+.watch { position:relative; box-sizing:border-box; /* include 10px border in width to avoid overflow */
+  --size: min(50vmin, 520px); width: var(--size); aspect-ratio:1; border-radius:50%; background: radial-gradient(circle at 50% 45%, rgba(30,30,40,0.9) 0%, rgba(18,18,28,0.95) 60%, rgba(12,12,18,1) 100%); border:10px solid #0f1116; box-shadow: inset 0 0 60px rgba(0,0,0,0.8), 0 40px 120px rgba(0,0,0,0.7);
+  /* logo fine-tune controls */
+  --logo-x: 0%; /* center horizontally */
+  --logo-y: 8%; /* move slightly up to align the hole with the O */
+  --logo-scale: 1.45;
+}
+
+/* Register animatable custom properties for rotation */
+@property --rotH { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@property --rotM { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+/* Trails (behind hands) */
+.trailHour, .trailMin { position:absolute; left:50%; top:50%; width:84%; height:84%; transform:translate(-50%,-50%); border-radius:50%; pointer-events:none; mix-blend-mode:screen; filter: blur(8px) saturate(1.2); opacity:.75; }
+.trailHour { background: conic-gradient(from 0deg, rgba(116,150,255,0.0) 0deg, rgba(116,150,255,0.0) 320deg, rgba(116,150,255,0.75) 350deg, rgba(116,150,255,0.0) 360deg); animation: spinTrailH 24s linear infinite; }
+.trailMin  { background: conic-gradient(from 0deg, rgba(255,140,80,0.0) 0deg, rgba(255,140,80,0.0) 300deg, rgba(255,140,80,0.85) 348deg, rgba(255,140,80,0.0) 360deg); animation: spinTrailM 6s linear infinite; }
+
+/* Static decorative hands become animated */
+.handHour { width:8px; height:34%; transform: translate(-50%, -100%) rotate(calc(52deg + var(--rotH))); background:linear-gradient(180deg,#d6dbff,#749aff); box-shadow:0 0 12px rgba(118,184,255,.6); animation: spinH 120s linear infinite; }
+.handMin  { width:6px; height:44%; transform: translate(-50%, -100%) rotate(calc(312deg + var(--rotM))); background:linear-gradient(180deg,#ffd1b8,#ff7d2a); box-shadow:0 0 12px rgba(255,140,80,.7); animation: spinM 8s linear infinite; }
+
+@keyframes spinH { to { --rotH: 360deg; } }
+@keyframes spinM { to { --rotM: 360deg; } }
+@keyframes spinTrailH { to { transform:translate(-50%,-50%) rotate(360deg); } }
+@keyframes spinTrailM { to { transform:translate(-50%,-50%) rotate(360deg); } }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){ .trailHour, .trailMin, .handHour, .handMin { animation:none !important; } }
+
+/* Numerals around the dial */
+.numeral { position:absolute; left:50%; top:50%; width:auto; height:auto; transform: translate(-50%, -50%) rotate(var(--a)) translateY(calc(-0.44 * var(--size))) rotate(calc(var(--a) * -1)); color:#8d98c9; font-weight:700; font-size:12px; letter-spacing:.2px; opacity:.85; text-shadow:0 0 8px rgba(130,160,255,.28); pointer-events:none; }
+@media (max-width: 900px){ .numeral { font-size:11px; } }
+
+/* Outer neon edge glow */
+.edgeGlow { position:absolute; inset:-1%; border-radius:50%; background: radial-gradient(closest-side, rgba(140,160,255,0.55), rgba(140,160,255,0) 74%); filter:blur(14px); mix-blend-mode:screen; opacity:.8; pointer-events:none; }
+
+/* Blue and orange luminous rings inside dial */
+.ring { position:absolute; inset:12%; border-radius:50%; border:2px solid transparent; pointer-events:none; }
+.blueRing { box-shadow: inset 0 0 0 2px rgba(120,170,255,.18); background: radial-gradient(circle at 32% 68%, rgba(80,150,255,.85) 0 3px, rgba(80,150,255,0) 6px), radial-gradient(circle at 20% 80%, rgba(80,150,255,.25), rgba(80,150,255,0) 60%); mask: radial-gradient(circle at 32% 68%, transparent 55%, black 56%); -webkit-mask: radial-gradient(circle at 32% 68%, transparent 55%, black 56%); filter: drop-shadow(0 0 18px rgba(80,150,255,.7)); animation: blueSweep 12s linear infinite; }
+.orangeRing { box-shadow: inset 0 0 0 2px rgba(255,156,84,.18); background: radial-gradient(circle at 70% 32%, rgba(255,160,110,.85) 0 3px, rgba(255,160,110,0) 7px), radial-gradient(circle at 82% 18%, rgba(255,160,110,.25), rgba(255,160,110,0) 60%); mask: radial-gradient(circle at 70% 32%, transparent 58%, black 59%); -webkit-mask: radial-gradient(circle at 70% 32%, transparent 58%, black 59%); filter: drop-shadow(0 0 18px rgba(255,160,110,.7)); animation: orangeSweep 12s linear infinite; }
+@keyframes blueSweep { from { transform:rotate(0); } to { transform:rotate(360deg); } }
+@keyframes orangeSweep { from { transform:rotate(0); } to { transform:rotate(360deg); } }
+
+/* Subtle halftone texture overlay inside the dial */
+.halftone { position:absolute; inset:14% 14% 14% 14%; border-radius:50%; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.06) 0 2px, rgba(0,0,0,0) 3px); background-size:6px 6px; opacity:.12; filter:contrast(1.15) saturate(1.05); mix-blend-mode:overlay; animation: halftonePulse 8s ease-in-out infinite; }
+@keyframes halftonePulse { 0%,100% { opacity:.10; } 50% { opacity:.18; } }
+
+/* Remove hand visuals completely (elements deleted in JSX, keep here for safety) */
+.hand, .handHour, .handMin { display:none !important; }
+/* Keep hub */
+.hub { position:absolute; left:50%; top:50%; width:14px; height:14px; transform:translate(-50%,-50%); background:#0f1116; border-radius:50%; box-shadow:0 0 0 2px #2a2f3a, 0 0 10px rgba(140,160,255,0.8), 0 0 30px rgba(255,140,80,0.6); z-index:3; }
+
+/* Center logo */
+.logo { position:absolute; left:50%; top:50%; width:62%; height:auto; transform:translate(-50%, -50%) translate(var(--logo-x), var(--logo-y)) scale(var(--logo-scale)); filter: drop-shadow(0 8px 28px rgba(0,0,0,.6)) brightness(.98) contrast(1.02) saturate(1.02); opacity:.95; z-index:2; pointer-events:none; }
+
+.content { color:#e9e7f6; max-width:720px; }
+.eyebrow { display:inline-block; font-size:.65rem; letter-spacing:2px; font-weight:800; text-transform:uppercase; color:#a18aff; background:rgba(161,138,255,0.12); padding:6px 12px; border:1px solid rgba(161,138,255,0.35); border-radius:999px; margin-bottom:14px; }
+.heading { margin:10px 0 12px; font-size: clamp(1.8rem, 3.6vw, 3rem); line-height:1.1; font-weight:800; }
+.subtext { margin:0 0 18px; color:#c8c3de; line-height:1.7; max-width: 58ch; }
+.ctaRow { display:flex; gap:14px; flex-wrap:wrap; }
+.ctaPrimary, .ctaSecondary { text-decoration:none; font-size:.75rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:12px 20px; border-radius:14px; display:inline-flex; align-items:center; gap:8px; transition:transform .25s, box-shadow .25s, background .25s, color .25s; }
+.ctaPrimary { background:linear-gradient(90deg,#6c47ff,#a18aff); color:#fff; box-shadow:0 10px 24px rgba(108,71,255,.45); }
+.ctaPrimary:hover { transform:translateY(-2px); box-shadow:0 16px 34px rgba(108,71,255,.6); }
+.ctaSecondary { background:rgba(255,255,255,0.06); color:#e5e1f4; border:1px solid rgba(161,138,255,0.4); }
+.ctaSecondary:hover { background:rgba(255,255,255,0.12); color:#fff; }
+
+@media (max-width: 720px){
+  /* remove fixed AR to prevent crop; center items */
+  .stage { aspect-ratio:auto; gap: clamp(16px,4vw,24px); justify-items:center; padding-inline: clamp(12px,4vw,20px); }
+  .watchWrap { width:100%; display:flex; justify-content:center; }
+  .watch { --size: min(90vw, 420px); /* fit within viewport width, including border */
+           --logo-y: 7.5%; margin:0 auto; }
+  .logo { width:60%; }
+  .numeral { font-size:10px; }
+  .beam { filter: blur(12px); opacity:.8; }
+  .beamOrange { left:-4%; top:4%; width:72%; height:16%; transform:rotate(-12deg); }
+  .beamBlue   { right:-6%; bottom:-8%; width:76%; height:20%; transform:rotate(12deg); }
+}
+@media (max-width: 420px){
+  .watch { --size: 88vw; }
+  .numeral { font-size:9px; }
+}
+@media (max-width: 900px){
+  .stage { grid-template-columns:1fr; text-align:center; }
+  .content { margin-top:10px; }
+  .watchWrap { order:-1; }
+  /* center CTA buttons on mobile */
+  .ctaRow { justify-content:center; }
+}
