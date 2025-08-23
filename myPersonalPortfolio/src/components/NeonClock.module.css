@@ -1,0 +1,63 @@
+/* Full-bleed black section to match GitHub block */
+.clockSection {
+  margin-top: 0; /* glue to previous section */
+  position: relative;
+  border-radius: 0;
+  background: #000;
+  border: none;
+  box-shadow: 0 0 0 100vmax #000; /* paint black beyond container */
+  clip-path: inset(0 -100vmax);
+  padding: clamp(24px, 4.5vw, 40px) 0;
+}
+.clockSection::before { content: none !important; }
+
+.clockCard {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  border-radius: 26px;
+  padding: clamp(18px, 3.2vw, 26px);
+  background: #000;
+  border: 1px solid rgba(128, 156, 255, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 20px 60px rgba(10, 12, 22, 0.7);
+}
+
+.headerRow { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.title { margin:0; font-size:.78rem; letter-spacing:2px; font-weight:800; text-transform:uppercase; color:#bfc7ff; }
+.dot { width:8px; height:8px; border-radius:50%; background:linear-gradient(90deg,#6c47ff,#a18aff); box-shadow:0 0 0 4px rgba(108,71,255,0.35), 0 0 16px 4px rgba(108,71,255,0.4); }
+
+/* Center stage containing the watch and beams */
+.stage { position:relative; border-radius:20px; overflow:hidden; background:#000; border:1px solid rgba(128,156,255,0.25); aspect-ratio: 16/6; display:grid; place-items:center; box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 8px 24px rgba(64,87,255,.18); }
+
+/* Diagonal glow beams like the reference image */
+.beam { position:absolute; inset:auto; pointer-events:none; filter: blur(16px); opacity:.9; mix-blend-mode:screen; }
+.beamBlue { left:35%; bottom:-10%; width:70%; height:36%; background: linear-gradient(90deg, rgba(90,160,255,0.0) 0%, rgba(90,160,255,0.5) 30%, rgba(90,160,255,0.85) 60%, rgba(90,160,255,0.15) 100%); transform: rotate(16deg); box-shadow: 0 0 60px 20px rgba(90,160,255,0.45); }
+.beamOrange { right:52%; top:-18%; width:60%; height:30%; background: linear-gradient(90deg, rgba(255,140,80,0) 0%, rgba(255,140,80,0.5) 40%, rgba(255,140,80,0.85) 70%, rgba(255,140,80,0.15) 100%); transform: rotate(-14deg); box-shadow: 0 0 60px 20px rgba(255,140,80,0.45); }
+
+/* Watch */
+.watch { position:relative; width:min(56vmin,520px); aspect-ratio:1; border-radius:50%; background: radial-gradient(circle at 50% 45%, rgba(40,40,60,0.9) 0%, rgba(18,18,28,0.95) 60%, rgba(12,12,18,1) 100%); box-shadow: inset 0 0 60px rgba(0,0,0,0.8), 0 40px 120px rgba(0,0,0,0.7); border: 10px solid #0f1116; }
+
+/* Dial texture */
+.watch:before { content:""; position:absolute; inset:8%; border-radius:50%; background:
+  radial-gradient(circle at 50% 50%, rgba(120,120,140,0.08), rgba(0,0,0,0) 70%),
+  radial-gradient(circle at 40% 40%, rgba(84,160,255,0.25), rgba(84,160,255,0) 60%),
+  radial-gradient(circle at 62% 60%, rgba(255,156,84,0.22), rgba(255,156,84,0) 60%),
+  repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 0 2px, rgba(0,0,0,0) 2px 6px);
+  filter: contrast(1.1) saturate(1.05);
+}
+
+/* Neon outer ring */
+.watch:after { content:""; position:absolute; inset:-1.2%; border-radius:50%; background: radial-gradient(closest-side, rgba(140,160,255,0.6), rgba(140,160,255,0) 72%); filter: blur(16px); mix-blend-mode:screen; opacity:.8; pointer-events:none; }
+
+/* Hands use CSS variables for continuous rotation without JS updates */
+.hand { position:absolute; left:50%; top:50%; transform-origin: 50% calc(100% - 10px); background: linear-gradient(180deg, #e7ecff 0%, #7aa1ff 100%); box-shadow: 0 0 16px rgba(118,184,255,0.65); border-radius: 10px; will-change: transform; transition: transform 80ms linear; }
+.hour { width:8px; height:28%; transform: translate(-50%, -100%) rotate(var(--hdeg, 0deg)); filter: drop-shadow(0 0 6px rgba(84,160,255,0.6)); }
+.min { width:6px; height:36%; transform: translate(-50%, -100%) rotate(var(--mdeg, 0deg)); filter: drop-shadow(0 0 6px rgba(140,160,255,0.6)); }
+.sec { width:3px; height:42%; background: linear-gradient(180deg,#ffb48a 0%, #ff6a00 100%); box-shadow: 0 0 16px rgba(255,140,80,0.8); transform: translate(-50%, -100%) rotate(var(--sdeg, 0deg)); }
+
+/* Center hub */
+.hub { position:absolute; left:50%; top:50%; width:14px; height:14px; transform:translate(-50%,-50%); background:#0f1116; border-radius:50%; box-shadow: 0 0 0 2px #2a2f3a, 0 0 10px rgba(140,160,255,0.8), 0 0 30px rgba(255,140,80,0.6); }
+
+@media (max-width: 720px){ .stage { aspect-ratio: 16/8; } }
