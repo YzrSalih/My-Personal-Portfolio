@@ -1,139 +1,79 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import codezyLogo from '../assets/Img/_CODEZY (2).png';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useIsMobile from './hooks/useIsMobile';
 
 const NavBar = () => {
-  const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const isMobile = useIsMobile(820);
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null);
-  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const onUpdateActiveLink = (value) => {
-    setActiveLink(value);
-    const section = document.getElementById(value);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
-    setMenuOpen(false);
-  };
-
-  // close menu automatically on route change (guarantees scroll unlock)
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
-
-  // close on click outside
-  useEffect(() => {
-    if (!menuOpen) return;
-    const handler = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false); };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, [menuOpen]);
-
-  // Escape key closes
-  useEffect(() => {
-    if (!menuOpen) return; const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false); }; document.addEventListener('keydown', onKey); return () => document.removeEventListener('keydown', onKey); }, [menuOpen]);
-
-  // prevent body scroll when menu open (with cleanup to always restore)
-  useEffect(() => {
-    if (!menuOpen) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = previous; };
-  }, [menuOpen]);
-
-  // Add route-change body overflow reset effect to guarantee scroll restored after navigation.
-  useEffect(() => { document.body.style.overflow=''; }, [location.pathname]);
+  // Ortak link stili
+  const linkClass = ({ isActive }) => 
+    `text-sm no-underline transition-all duration-300 ${
+      isActive ? 'text-white font-bold scale-110' : 'text-white/50 hover:text-white hover:scale-105'
+    }`;
 
   return (
-    <Navbar expand="lg" className={`custom-navbar ${scrolled ? 'scrolled' : ''}`}>
-      <Container fluid>
-        <div className="navbar-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-          {/* Logo */}
-          <div className="navbar-left" style={{ display: 'flex', alignItems: 'center', flex: '0 0 auto' }}>
-            <Navbar.Brand onClick={() => { navigate('/'); setActiveLink('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
-              <img
-                src={codezyLogo}
-                alt="Codezy Logo"
-                style={{
-                  width: isMobile ? '140px' : '200px',
-                  height: 'auto',
-                  maxWidth: '200px',
-                  display: 'block',
-                  margin: isMobile ? '8px 12px 0 0' : '20px 20px 0 0',
-                  objectFit: 'contain',
-                  verticalAlign: 'middle'
-                }}
-              />
-            </Navbar.Brand>
+    <nav className={`fixed top-0 w-full z-[999] transition-all duration-500 ${scrolled ? 'py-3 bg-black/40 backdrop-blur-md' : 'py-6 bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
+        
+        {/* LOGO */}
+        <div className="flex-1">
+          <div onClick={() => { navigate('/'); setMenuOpen(false); }} className="cursor-pointer inline-block">
+            <img src={codezyLogo} alt="Codezy Logo" className={`${isMobile ? 'w-24' : 'w-32'} h-auto`} />
           </div>
+        </div>
 
-          {/* Desktop Links */}
-          <div className="navbar-center" style={{ display: 'flex', alignItems: 'center', flex: '1 1 auto', justifyContent: 'center' }}>
-            <div className="nav-links" style={{ display: 'flex', gap: '48px', alignItems: 'center' }}>
-              <NavLink to="/" className={({ isActive }) => isActive ? 'navbar-link active' : 'navbar-link'} style={{ textDecoration: 'none', color: '#fff', fontWeight: 600, fontSize: '1.1rem' }}>Home</NavLink>
-              <span style={{ fontSize: '22px', color: '#fff', fontWeight: 'bold', margin: '0 8px' }}>|</span>
-              <NavLink to="/skills" className={({ isActive }) => isActive ? 'navbar-link active' : 'navbar-link'} style={{ textDecoration: 'none', color: '#fff', fontWeight: 600, fontSize: '1.1rem' }}>Skills</NavLink>
-              <span style={{ fontSize: '22px', color: '#fff', fontWeight: 'bold', margin: '0 8px' }}>|</span>
-              <NavLink to="/projects" className={({ isActive }) => isActive ? 'navbar-link active' : 'navbar-link'} style={{ textDecoration: 'none', color: '#fff', fontWeight: 600, fontSize: '1.1rem' }}>Projects</NavLink>
+        {/* DESKTOP MENU (Capsule Design) */}
+        {!isMobile && (
+          <div className="flex-[2] flex justify-center">
+            <div className="bg-white/5 backdrop-blur-2xl border border-white/10 px-8 py-2.5 rounded-full flex items-center gap-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)]">
+              <NavLink to="/" className={linkClass}>Overview</NavLink>
+              <span className="w-px h-4 bg-white/10"></span>
+              <NavLink to="/skills" className={linkClass}>Services</NavLink>
+              <span className="w-px h-4 bg-white/10"></span>
+              <NavLink to="/projects" className={linkClass}>Solutions</NavLink>
+              <span className="w-px h-4 bg-white/10"></span>
+              <NavLink to="/contact" className={({ isActive }) => `text-sm no-underline transition-all ${isActive ? 'text-purple-400 font-bold' : 'text-white/50 hover:text-purple-400'}`}>
+                CodezyForMe
+              </NavLink>
             </div>
           </div>
+        )}
 
-          {/* Right social (hide on mobile) */}
-          <div className="navbar-right" style={{ display: 'flex', alignItems: 'center', flex: '0 0 auto', gap: '16px' }}>
-            <div className="social-icons" style={{ display: 'flex', gap: '10px', marginRight: '40px' }}>
-              <a href="https://www.linkedin.com/in/salih-yazar-216835206/?profileId=ACoAADRy1fIBmvfA3MFyOFnGIZdJ95vVAw4xsTY" target="_blank" rel="noopener noreferrer" className="icon-link" title="LinkedIn">
-                <i className="bi bi-linkedin"></i>
-              </a>
-              <a href="https://github.com/YzrSalih" target="_blank" rel="noopener noreferrer" className="icon-link" title="GitHub">
-                <i className="bi bi-github"></i>
-              </a>
-              <a href="https://medium.com/@yzr.salih.yzr" target="_blank" rel="noopener noreferrer" className="icon-link" title="Medium">
-                <i className="bi bi-medium"></i>
-              </a>
-            </div>
+        {/* SOCIAL & MOBILE TOGGLE */}
+        <div className="flex-1 flex justify-end items-center gap-6">
+          <div className="hidden md:flex gap-5 opacity-70 hover:opacity-100 transition-opacity">
+             <a href="https://linkedin.com/in/salih-yazar-216835206" target="_blank" rel="noreferrer" className="text-xl text-white hover:text-purple-400"><i className="bi bi-linkedin"></i></a>
+             <a href="https://github.com/YzrSalih" target="_blank" rel="noreferrer" className="text-xl text-white hover:text-purple-400"><i className="bi bi-github"></i></a>
           </div>
-
-          {/* Hamburger for mobile (hidden when menu open) */}
-          {isMobile && !menuOpen && (
-            <button
-              className="hamburger"
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen(true)}
-            >
-              <span></span><span></span><span></span>
+          
+          {isMobile && (
+            <button className="text-white text-3xl focus:outline-none z-[1001]" onClick={() => setMenuOpen(!menuOpen)}>
+              <i className={`bi ${menuOpen ? 'bi-x' : 'bi-list'}`}></i>
             </button>
           )}
         </div>
-      </Container>
+      </div>
+
+      {/* MOBILE OVERLAY MENU */}
       {isMobile && (
-        <div ref={menuRef} className={`mobile-menu ${menuOpen ? 'show' : ''}`}>
-          <button type="button" className="menu-close" aria-label="Close menu" onClick={() => setMenuOpen(false)}>×</button>
-          <NavLink to="/" onClick={() => onUpdateActiveLink('home')} className={({ isActive }) => isActive ? 'mobile-link active' : 'mobile-link'}>Home</NavLink>
-          <NavLink to="/skills" onClick={() => onUpdateActiveLink('skills')} className={({ isActive }) => isActive ? 'mobile-link active' : 'mobile-link'}>Skills</NavLink>
-          <NavLink to="/projects" onClick={() => onUpdateActiveLink('projects')} className={({ isActive }) => isActive ? 'mobile-link active' : 'mobile-link'}>Projects</NavLink>
+        <div className={`fixed inset-0 bg-black/95 backdrop-blur-3xl flex flex-col items-center justify-center gap-10 transition-transform duration-500 z-[1000] ${menuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+           <NavLink to="/" onClick={() => setMenuOpen(false)} className="text-3xl text-white no-underline font-light">Overview</NavLink>
+           <NavLink to="/skills" onClick={() => setMenuOpen(false)} className="text-3xl text-white no-underline font-light">Services</NavLink>
+           <NavLink to="/projects" onClick={() => setMenuOpen(false)} className="text-3xl text-white no-underline font-light">Solutions</NavLink>
+           <NavLink to="/contact" onClick={() => setMenuOpen(false)} className="text-3xl text-purple-400 no-underline font-bold">CodezyForMe</NavLink>
         </div>
       )}
-    </Navbar>
+    </nav>
   );
 };
 

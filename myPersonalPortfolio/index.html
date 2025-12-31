@@ -1,26 +1,1984 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/src/assets/Img/cdzy3.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Codezy</title>
-    <meta name="description" content="Codezy – Personal portfolio of Salih Yazar showcasing projects, skills and experience." />
-    <meta name="theme-color" content="#1a0033" />
-    <!-- Open Graph -->
-    <meta property="og:title" content="Codezy" />
-    <meta property="og:description" content="Personal portfolio of Salih Yazar – projects, skills, experience." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://codezyfor.me" />
-    <meta property="og:image" content="/src/assets/Img/cdzy.png" />
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Codezy" />
-    <meta name="twitter:description" content="Personal portfolio of Salih Yazar – projects, skills, experience." />
-    <meta name="twitter:image" content="/src/assets/Img/cdzy.png" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+<html lang="en" class="antialiased dark"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codezy - Freelance Developer Services</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<style>
+body {
+background-color: #000000;
+color: #e5e5e5;
+font-family: "Inter", sans-serif;
+letter-spacing: -0.01em;
+overflow-x: hidden;
+}
+/* Technical Grid */
+.technical-grid {
+background-size: 40px 40px;
+background-image: linear-gradient(
+to right,
+rgba(255, 255, 255, 0.02) 1px,
+transparent 1px
+),
+linear-gradient(
+to bottom,
+rgba(255, 255, 255, 0.02) 1px,
+transparent 1px
+);
+mask-image: linear-gradient(
+to bottom,
+transparent 5%,
+black 40%,
+black 70%,
+transparent 95%
+);
+}
+/* Custom Switch */
+.toggle-switch {
+width: 32px;
+height: 18px;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 99px;
+position: relative;
+border: 1px solid rgba(255, 255, 255, 0.1);
+transition: all 0.3s ease;
+cursor: pointer;
+}
+.toggle-switch::after {
+content: "";
+position: absolute;
+left: 2px;
+top: 2px;
+width: 12px;
+height: 12px;
+background: white;
+border-radius: 50%;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+transition: all 0.3s ease;
+}
+.toggle-switch.active {
+background: rgba(16, 185, 129, 0.2);
+border-color: rgba(16, 185, 129, 0.5);
+}
+.toggle-switch.active::after {
+transform: translateX(14px);
+background: #34d399;
+box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+}
+/* Animations */
+@keyframes animationIn {
+0% {
+opacity: 0;
+transform: translateY(20px);
+filter: blur(5px);
+}
+100% {
+opacity: 1;
+transform: translateY(0);
+filter: blur(0px);
+}
+}
+.animate-on-scroll {
+animation-play-state: paused !important;
+}
+.animate-on-scroll.animate {
+animation-play-state: running !important;
+}
+/* Noise Overlay */
+body::before {
+content: "";
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: url("https://grainy-gradients.vercel.app/noise.svg");
+opacity: 0.04;
+pointer-events: none;
+z-index: 100;
+mix-blend-mode: overlay;
+}
+/* Spotlight */
+.spotlight-grid {
+--mouse-x: -1000px;
+--mouse-y: -1000px;
+}
+.spotlight-card::after {
+content: "";
+position: absolute;
+inset: 0;
+background: radial-gradient(
+600px circle at var(--mouse-x) var(--mouse-y),
+rgba(255, 255, 255, 0.06),
+transparent 40%
+);
+opacity: 0;
+transition: opacity 0.3s;
+pointer-events: none;
+z-index: 2;
+mix-blend-mode: screen;
+}
+.spotlight-grid:hover .spotlight-card::after {
+opacity: 1;
+}
+/* Marquee */
+.marquee-wrapper {
+mask-image: linear-gradient(
+to right,
+transparent,
+black 10%,
+black 90%,
+transparent
+);
+}
+.marquee-content {
+display: flex;
+gap: 4rem;
+width: max-content;
+animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+0% {
+transform: translateX(0);
+}
+100% {
+transform: translateX(-50%);
+}
+}
+/* Magnetic Button */
+.magnetic-btn {
+transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/* Glitch Effect */
+.glitch-hover:hover .glitch-target {
+animation: glitch-anim 0.3s infinite;
+}
+@keyframes glitch-anim {
+0% {
+transform: translate(0);
+}
+20% {
+transform: translate(-1px, 1px);
+}
+40% {
+transform: translate(-1px, -1px);
+}
+60% {
+transform: translate(1px, 1px);
+}
+80% {
+transform: translate(1px, -1px);
+}
+100% {
+transform: translate(0);
+}
+}
+/* Shiny CTA Button */
+@property --gradient-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@property --gradient-angle-offset { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@property --gradient-percent { syntax: "<percentage>"; initial-value: 20%; inherits: false; }
+@property --gradient-shine { syntax: "<color>"; initial-value: #10b981; inherits: false; }
+.shiny-cta {
+--gradient-angle: 0deg;
+--gradient-angle-offset: 0deg;
+--gradient-percent: 20%;
+--gradient-shine: #10b981;
+position: relative;
+overflow: hidden;
+border-radius: 9999px;
+padding: 1rem 2.5rem;
+font-family: inherit;
+font-size: 0.75rem;
+line-height: 1;
+font-weight: 600;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #ffffff;
+background: linear-gradient(#000000, #000000) padding-box, conic-gradient( from calc(var(--gradient-angle) - var(--gradient-angle-offset)), transparent 0%, #065f46 5%, var(--gradient-shine) 15%, #065f46 30%, transparent 40%, transparent 100% ) border-box;
+border: 1px solid transparent;
+box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+outline: none;
+transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+cursor: pointer;
+isolation: isolate;
+z-index: 0;
+animation: border-spin 3s linear infinite;
+}
+@keyframes border-spin { to { --gradient-angle: 360deg; } }
+.shiny-cta:hover {
+--gradient-shine: #34d399;
+transform: scale(1.02);
+box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 0 1px rgba(255,255,255,0.2);
+}
+/* Pricing Card Gradient */
+.pricing-highlight {
+background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 40%),
+linear-gradient(to bottom, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+}
+/* --- THE WALL STYLES --- */
+.wall-container {
+perspective: 2000px;
+transform-style: preserve-3d;
+}
+.wall-grid {
+transform: rotateY(-18deg) rotateX(10deg) rotateZ(-2deg) scale(1.1);
+transform-style: preserve-3d;
+}
+.wall-column {
+will-change: transform;
+}
+.wall-column-up {
+animation: scrollUp 40s linear infinite;
+}
+.wall-column-down {
+animation: scrollDown 40s linear infinite;
+}
+@keyframes scrollUp {
+0% { transform: translateY(0); }
+100% { transform: translateY(-50%); }
+}
+@keyframes scrollDown {
+0% { transform: translateY(-50%); }
+100% { transform: translateY(0); }
+}
+/* Glass Card in Wall */
+.wall-card {
+background: rgba(23, 23, 23, 0.6);
+backdrop-filter: blur(12px);
+border: 1px solid rgba(255,255,255,0.08);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255,255,255,0.02);
+transition: border-color 0.3s, background-color 0.3s, transform 0.3s;
+}
+.wall-card:hover {
+border-color: rgba(255,255,255,0.2);
+background: rgba(30, 30, 30, 0.8);
+transform: translateZ(20px);
+box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.05);
+}
+/* Masking the Wall */
+.wall-mask {
+mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent),
+linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+mask-composite: intersect;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+// Intersection Observer
+const observer = new IntersectionObserver(
+(entries) => {
+entries.forEach((entry) => {
+if (entry.isIntersecting) {
+entry.target.classList.add("animate");
+observer.unobserve(entry.target);
+}
+});
+},
+{ threshold: 0.1, rootMargin: "0px 0px -5% 0px" }
+);
+document
+.querySelectorAll(".animate-on-scroll")
+.forEach((el) => observer.observe(el));
+// Spotlight Logic
+document.querySelectorAll(".spotlight-grid").forEach((grid) => {
+grid.addEventListener("mousemove", (e) => {
+const rect = grid.getBoundingClientRect();
+grid.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+grid.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+});
+});
+// Scramble Text
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+document.querySelectorAll("[data-scramble]").forEach((el) => {
+el.setAttribute("data-original", el.innerText);
+el.addEventListener("mouseenter", () => {
+let iter = 0;
+const original = el.getAttribute("data-original");
+const interval = setInterval(() => {
+el.innerText = original
+.split("")
+.map((l, i) => {
+if (i < iter) return original[i];
+return chars[Math.floor(Math.random() * chars.length)];
+})
+.join("");
+if (iter >= original.length) clearInterval(interval);
+iter += 1 / 3;
+}, 30);
+el.dataset.interval = interval;
+});
+el.addEventListener("mouseleave", () => {
+clearInterval(el.dataset.interval);
+el.innerText = el.getAttribute("data-original");
+});
+});
+// Magnetic Buttons
+document.querySelectorAll(".magnetic-btn").forEach((btn) => {
+btn.addEventListener("mousemove", (e) => {
+const rect = btn.getBoundingClientRect();
+const x = e.clientX - rect.left - rect.width / 2;
+const y = e.clientY - rect.top - rect.height / 2;
+btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+});
+btn.addEventListener("mouseleave", () => {
+btn.style.transform = "translate(0px, 0px)";
+});
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('.nav-link').forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href').substring(1);
+const targetSection = document.getElementById(targetId);
+if (targetSection) {
+targetSection.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+
+// Active state management for navbar
+function updateActiveNav() {
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+const scrollPosition = window.scrollY + 100;
+
+sections.forEach(section => {
+const sectionTop = section.offsetTop;
+const sectionHeight = section.offsetHeight;
+const sectionId = section.getAttribute('id');
+
+if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+navLinks.forEach(link => {
+link.classList.remove('bg-white', 'text-black', 'font-semibold');
+link.classList.add('text-neutral-400', 'font-medium');
+});
+const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+if (activeLink) {
+activeLink.classList.remove('text-neutral-400', 'font-medium');
+activeLink.classList.add('bg-white', 'text-black', 'font-semibold');
+}
+}
+});
+}
+
+// Update active nav on scroll
+window.addEventListener('scroll', updateActiveNav);
+// Update active nav on load
+document.addEventListener('DOMContentLoaded', updateActiveNav);
+
+// Mobile Menu Toggle
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileMenu.classList.toggle('hidden');
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  
+  if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+    mobileMenu.classList.add('hidden');
+  }
+});
+
+// Contact Form Handler
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const formData = new FormData(this);
+const data = Object.fromEntries(formData);
+const formMessage = document.getElementById('formMessage');
+
+// Basic validation
+if (!data.name || !data.email || !data.projectType || !data.message) {
+formMessage.className = 'mt-4 p-4 rounded-lg text-sm font-mono bg-red-900/20 border border-red-500/30 text-red-400';
+formMessage.textContent = 'Please fill in all required fields.';
+formMessage.classList.remove('hidden');
+return;
+}
+
+// Email validation
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(data.email)) {
+formMessage.className = 'mt-4 p-4 rounded-lg text-sm font-mono bg-red-900/20 border border-red-500/30 text-red-400';
+formMessage.textContent = 'Please enter a valid email address.';
+formMessage.classList.remove('hidden');
+return;
+}
+
+// Send email using EmailJS or similar service (for demo, we'll use mailto)
+const subject = `New Project Request from ${data.name}`;
+const body = `Name: ${data.name}\nEmail: ${data.email}\nProject Type: ${data.projectType}\nMessage: ${data.message}`;
+window.location.href = `mailto:yzr.salih@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+// Show success message
+formMessage.className = 'mt-4 p-4 rounded-lg text-sm font-mono bg-emerald-900/20 border border-emerald-500/30 text-emerald-400';
+formMessage.textContent = `Thank you ${data.name}! Your project request has been received. I'll get back to you within 24 hours.`;
+formMessage.classList.remove('hidden');
+
+// Log form data (in production, you'd send this to a server)
+console.log('Form submitted:', data);
+
+// Reset form
+this.reset();
+
+// Hide message after 5 seconds
+setTimeout(() => {
+formMessage.classList.add('hidden');
+}, 5000);
+});
+});
+
+// Scroll to contact form with pre-selected project type (Global function)
+function scrollToContact(projectType) {
+// Scroll to contact section
+document.getElementById('contact').scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+
+// Set project type after a short delay to ensure form is visible
+setTimeout(() => {
+const projectTypeInput = document.getElementById('projectTypeInput');
+const projectTypeLabel = document.getElementById('projectTypeLabel');
+// Map project types to form values
+const typeMap = {
+'full-stack': 'full-stack',
+'retainer': 'web-development',
+'consulting': 'consulting'
+};
+
+const value = typeMap[projectType] || projectType;
+if (projectTypeInput && value) {
+projectTypeInput.value = value;
+if (projectTypeLabel) {
+const labelMap = {
+'web-development': 'Web Development',
+'ui-design': 'UI/UX Design',
+'full-stack': 'Full Stack Project',
+'optimization': 'Performance Optimization',
+'consulting': 'Technical Consulting'
+};
+projectTypeLabel.textContent = labelMap[value] || 'Select a service';
+}
+}
+}, 800);
+}
+
+// Custom dropdown: Project Type
+function initProjectTypeDropdown() {
+  const btn = document.getElementById('projectTypeBtn');
+  const menu = document.getElementById('projectTypeMenu');
+  const input = document.getElementById('projectTypeInput');
+  const label = document.getElementById('projectTypeLabel');
+
+  if (!btn || !menu || !input || !label) return;
+
+  const closeMenu = () => {
+    menu.classList.add('hidden');
+  };
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    menu.classList.toggle('hidden');
+  });
+
+  menu.querySelectorAll('.project-type-option').forEach((opt) => {
+    opt.addEventListener('click', () => {
+      const value = opt.getAttribute('data-value') || '';
+      input.value = value;
+      label.textContent = opt.textContent.trim();
+      closeMenu();
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initProjectTypeDropdown);
+</script></head>
+  <body class="relative min-h-screen selection:bg-white selection:text-black pt-32">
+    <!-- Hero Video Background -->
+    <div class="fixed inset-0 -z-30 w-full h-full overflow-hidden pointer-events-none">
+      <video autoplay="" loop="" muted="" playsinline="" class="w-full h-full object-cover opacity-20 mix-blend-screen" style="filter: hue-rotate(150deg) contrast(1.2);">
+        <source src="https://cdn.coverr.co/videos/coverr-digital-lines-moving-background-4770/1080p.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+    </div>
+
+    <!-- Aura Background -->
+    <div class="aura-background-component fixed inset-0 w-screen h-screen mix-blend-screen -z-20 pointer-events-none" data-alpha-mask="60" style="
+        mask-image: linear-gradient(
+          to bottom,
+          transparent,
+          black 0%,
+          black 80%,
+          transparent
+        );
+      ">
+      <div class="aura-background-component absolute inset-0 w-screen h-screen -z-10">
+        <div data-us-project="ILgOO23w4wEyPQOKyLO4" class="absolute inset-0 w-screen h-screen -z-10"></div>
+        <script type="text/javascript">
+          !(function () {
+            if (!window.UnicornStudio) {
+              window.UnicornStudio = { isInitialized: !1 };
+              var i = document.createElement("script");
+              (i.src =
+                "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js"),
+                (i.onload = function () {
+                  window.UnicornStudio.isInitialized ||
+                    (UnicornStudio.init(),
+                    (window.UnicornStudio.isInitialized = !0));
+                }),
+                (document.head || document.body).appendChild(i);
+            }
+          })();
+        </script>
+      </div>
+    </div>
+
+    <!-- Technical Grid Overlay (Global) -->
+    <div class="fixed inset-0 pointer-events-none z-0 technical-grid opacity-30"></div>
+
+    <!-- Vertical Structure Lines -->
+    <div class="fixed inset-0 pointer-events-none z-0 max-w-[1400px] mx-auto border-x border-white/[0.04]">
+      <div class="absolute left-1/4 h-full w-px bg-white/[0.02]"></div>
+      <div class="absolute left-2/4 h-full w-px bg-white/[0.02]"></div>
+      <div class="absolute left-3/4 h-full w-px bg-white/[0.02]"></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="fixed z-50 flex w-full top-6 px-6 justify-center">
+      <nav class="flex w-full max-w-[1400px] mx-auto items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 border border-white/10 bg-white/5 rounded flex items-center justify-center">
+            <span class="text-[12px] font-mono font-semibold text-white/90 tracking-[-0.06em]">&lt;/&gt;</span>
+          </div>
+          <span class="text-xs font-semibold tracking-tight text-white uppercase">
+            Codezy
+          </span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-1 backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-full p-1.5 pr-2 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+          <a href="#overview" class="nav-link px-5 py-2 rounded-full bg-white text-black text-[11px] font-semibold tracking-wide hover:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all">
+            Overview
+          </a>
+          <a href="#services" class="nav-link px-5 py-2 rounded-full text-neutral-400 hover:text-white hover:bg-white/5 text-[11px] font-medium transition-all tracking-wide">
+            Services
+          </a>
+          <a href="#solutions" class="nav-link px-5 py-2 rounded-full text-neutral-400 hover:text-white hover:bg-white/5 text-[11px] font-medium transition-all tracking-wide">
+            Solutions
+          </a>
+          <a href="#contact" class="nav-link px-5 py-2 rounded-full text-neutral-400 hover:text-white hover:bg-white/5 text-[11px] font-medium transition-all tracking-wide">
+            Hire Me
+          </a>
+        </div>
+
+        <button id="mobileMenuBtn" class="flex items-center gap-2 text-[11px] font-medium text-white uppercase tracking-wider hover:opacity-70 transition-opacity cursor-pointer md:hidden">
+          Menu
+          <span class="text-neutral-500">+</span>
+        </button>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden fixed top-20 right-6 w-64 bg-black/90 backdrop-blur-xl border border-white/10 rounded-lg p-6 z-50">
+          <nav class="flex flex-col gap-4">
+            <a href="#overview" class="text-neutral-400 hover:text-white transition-colors">Overview</a>
+            <a href="#services" class="text-neutral-400 hover:text-white transition-colors">Services</a>
+            <a href="#solutions" class="text-neutral-400 hover:text-white transition-colors">Solutions</a>
+            <a href="#contact" class="text-neutral-400 hover:text-white transition-colors">Hire Me</a>
+          </nav>
+        </div>
+      </nav>
+    </div>
+
+    <main class="z-10 relative">
+      <!-- Hero Section -->
+      <section id="overview" class="max-w-[1400px] mx-auto px-6 pb-40 pt-20 border-b border-white/5">
+        <div class="max-w-5xl">
+          <div class="inline-flex items-center gap-3 px-3 py-1.5 mb-10 border border-white/10 rounded-full bg-white/5 backdrop-blur-sm animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both]">
+            <div class="flex items-center gap-2 px-1">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest" data-scramble="true">
+                Available for Projects
+              </span>
+            </div>
+            <div class="h-3 w-px bg-white/10"></div>
+            <span class="text-[10px] text-neutral-400 font-mono">Freelance Developer</span>
+          </div>
+
+          <h1 class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] text-6xl md:text-8xl lg:text-[7rem] font-medium tracking-tighter text-white leading-[0.9] mb-12">
+            Your Vision,
+            <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-600">
+              Coded into Reality.
+            </span>
+          </h1>
+
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-12 animate-on-scroll [animation:animationIn_0.8s_ease-out_0.4s_both]">
+            <p class="text-lg text-neutral-400 max-w-xl leading-relaxed font-light">
+              As an experienced freelance developer, I specialize in building robust and scalable web applications, 
+              custom software solutions, and engaging user interfaces. Let's collaborate to transform your ideas 
+              into high-performing digital products that drive growth and efficiency.
+            </p>
+
+            <div class="flex items-center gap-6">
+              <a href="#contact" class="group relative px-8 py-4 bg-white text-black text-xs font-bold tracking-widest uppercase overflow-hidden hover:bg-neutral-200 transition-all duration-500 inline-block group-hover:translate-x-[180px]">
+                <span class="relative z-10 flex items-center gap-2">
+                  Get a Free Quote
+                  <iconify-icon icon="ph:arrow-right" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                </span>
+                <div class="absolute inset-0 bg-neutral-100 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              </a>
+              <div class="h-px w-12 bg-white/20"></div>
+              <span class="text-[10px] font-mono text-neutral-500">
+                SCROLL TO EXPLORE
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Logo Strip -->
+      <div class="border-b border-white/5 bg-black">
+        <div class="max-w-[1400px] mx-auto overflow-hidden marquee-wrapper">
+          <div class="marquee-content opacity-40 grayscale hover:grayscale-0 hover:opacity-80 transition-all duration-700 items-center">
+            <iconify-icon icon="simple-icons:react" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:nextdotjs" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:javascript" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:typescript" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:nodejs" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:python" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:postgresql" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:mongodb" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:docker" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:git" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:tailwindcss" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:figma" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:salesforce" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:aws" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:vercel" width="32"></iconify-icon>
+            <!-- Repeat for infinite scroll -->
+            <iconify-icon icon="simple-icons:react" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:nextdotjs" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:javascript" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:typescript" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:nodejs" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:python" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:postgresql" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:mongodb" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:docker" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:git" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:tailwindcss" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:figma" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:salesforce" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:aws" width="32"></iconify-icon>
+            <iconify-icon icon="simple-icons:vercel" width="32"></iconify-icon>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selected Projects -->
+      <section id="services" class="border-b border-white/5 bg-black relative">
+        <div class="max-w-[1400px] mx-auto">
+          <!-- Section Header -->
+          <div class="grid grid-cols-1 md:grid-cols-4 border-b border-white/5">
+            <div class="p-6 md:p-10 border-r border-white/5 flex flex-col justify-between h-full md:border-r">
+              <div class="text-[10px] font-mono text-neutral-500 uppercase mb-2">
+                01 — Codezy Works
+              </div>
+              <h2 class="text-2xl text-white font-medium tracking-tight">
+                Case Index
+              </h2>
+            </div>
+            <div class="col-span-full md:col-span-3 p-6 md:p-10 flex items-center border-t border-white/5 md:border-t-0">
+              <p class="text-sm text-neutral-500 max-w-full md:max-w-lg text-center md:text-left">
+                Transforming ideas into powerful digital solutions. From AI-powered platforms 
+                to scalable web applications, each project showcases cutting-edge technology 
+                and innovative problem-solving.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 01 -->
+          <div class="group relative border-b border-white/5 overflow-hidden">
+            <div class="absolute inset-0 bg-neutral-900/0 group-hover:bg-neutral-900/40 transition-colors duration-700"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 h-[600px]">
+              <!-- Visual Side -->
+              <div class="relative h-full border-r border-white/5 overflow-hidden">
+                <div class="absolute inset-0 bg-[url('https://raw.githubusercontent.com/YzrSalih/AI4Integrate-platform/main/screenshot.png')] bg-cover bg-center grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+
+                <!-- Floating AI Element Mockup -->
+                <div class="absolute bottom-12 left-12 right-12 group-hover:translate-y-[-10px] group-hover:translate-x-[5px] transition-transform duration-700">
+                  <div class="bg-gradient-to-br from-emerald-900/20 to-blue-900/20 backdrop-blur-xl border border-emerald-500/20 rounded-lg p-6 transition-all duration-700 delay-100 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                    <div class="flex justify-between items-center mb-4">
+                      <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <span class="text-[10px] font-mono text-emerald-400">AI Processing</span>
+                      </div>
+                      <div class="text-[10px] font-mono text-neutral-500">
+                        ai4integrate.py
+                      </div>
+                    </div>
+                    <div class="space-y-3">
+                      <div class="flex items-center gap-2">
+                        <span class="text-emerald-400 text-xs font-mono">></span>
+                        <span class="text-neutral-300 text-xs font-mono">Analyzing resume data...</span>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <span class="text-blue-400 text-xs font-mono">✓</span>
+                        <span class="text-neutral-400 text-xs font-mono">Skills matched: 95%</span>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <span class="text-emerald-400 text-xs font-mono">AI</span>
+                        <span class="text-neutral-400 text-xs font-mono">Generating CV template...</span>
+                      </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-white/10">
+                      <div class="flex justify-between items-center">
+                        <span class="text-[8px] text-neutral-500 font-mono">ACCURACY</span>
+                        <span class="text-xs font-mono text-emerald-400">98.5%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Content Side -->
+              <div class="p-12 flex flex-col justify-between relative bg-black">
+                <a href="https://github.com/YzrSalih/AI4Integrate-platform" target="_blank" rel="noopener noreferrer" class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <iconify-icon icon="ph:arrow-up-right-light" width="32" class="text-white"></iconify-icon>
+                </a>
+
+                <div>
+                  <div class="flex gap-2 mb-6">
+                    <span class="px-2 py-1 border border-white/10 text-[10px] font-mono text-neutral-400 uppercase">
+                      AI Platform
+                    </span>
+                    <span class="px-2 py-1 border border-white/10 text-[10px] font-mono text-neutral-400 uppercase">
+                      2024
+                    </span>
+                  </div>
+                  <h3 class="text-4xl md:text-6xl font-medium text-white tracking-tight mb-4">
+                    AI4Integrate
+                    <br>
+                    Platform
+                  </h3>
+                  <p class="text-neutral-500 max-w-xs leading-relaxed">
+                    AI-powered platform for resume matching, CV building, and intelligent document processing.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8 mt-12">
+                  <div>
+                    <div class="text-[10px] text-neutral-600 uppercase mb-1">
+                      Impact
+                    </div>
+                    <div class="text-xl text-white font-mono">AI-Powered</div>
+                    <div class="text-xs text-neutral-500">Smart solutions</div>
+                  </div>
+                  <div>
+                    <div class="text-[10px] text-neutral-600 uppercase mb-1">
+                      Stack
+                    </div>
+                    <div class="text-sm text-white font-mono">
+                      Python, React, AI/ML
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW: The "Wall" Section -->
+      <section id="solutions" class="relative bg-black border-b border-white/5 overflow-hidden">
+        <!-- Background Ambient Glow -->
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-900/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+        <div class="max-w-[1400px] mx-auto relative z-10 flex flex-col md:flex-row min-h-[900px]">
+          
+          <!-- Left: Typography Content -->
+          <div class="w-full md:w-[40%] px-6 py-20 md:py-32 flex flex-col justify-center relative z-20 bg-gradient-to-r from-black via-black to-transparent">
+             <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-white/10 rounded-full bg-white/5 self-start">
+                <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse"></div>
+                <span class="text-[10px] font-mono text-indigo-300 uppercase tracking-widest">
+                  MY TECH STACK
+                </span>
+            </div>
+            
+            <h2 class="text-5xl md:text-7xl font-medium tracking-tighter text-white mb-8 leading-[0.9]">
+              MY
+              <br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-br from-white via-neutral-200 to-neutral-500">
+                EXPERTISE
+              </span>
+            </h2>
+            
+            <div class="space-y-8 max-w-sm">
+                <p class="text-neutral-400 text-lg font-light leading-relaxed">
+                  I build modern digital solutions with carefully selected technologies that ensure scalability, performance, and maintainability.
+                </p>
+
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-4 group cursor-pointer">
+                        <div class="w-10 h-10 rounded border border-white/10 bg-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all">
+                            <iconify-icon icon="ph:cube-transparent" class="text-neutral-400 group-hover:text-white transition-colors"></iconify-icon>
+                        </div>
+                        <div>
+                            <div class="text-white text-sm font-medium">Frontend Mastery</div>
+                            <div class="text-[10px] text-neutral-500 font-mono uppercase">React / Next.js / Vue.js</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 group cursor-pointer">
+                        <div class="w-10 h-10 rounded border border-white/10 bg-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all">
+                            <iconify-icon icon="ph:database" class="text-neutral-400 group-hover:text-white transition-colors"></iconify-icon>
+                        </div>
+                        <div>
+                            <div class="text-white text-sm font-medium">Backend Excellence</div>
+                            <div class="text-[10px] text-neutral-500 font-mono uppercase">Node.js / Python / PostgreSQL</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 group cursor-pointer">
+                        <div class="w-10 h-10 rounded border border-white/10 bg-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all">
+                            <iconify-icon icon="ph:rocket-launch" class="text-neutral-400 group-hover:text-white transition-colors"></iconify-icon>
+                        </div>
+                        <div>
+                            <div class="text-white text-sm font-medium">DevOps & Cloud</div>
+                            <div class="text-[10px] text-neutral-500 font-mono uppercase">Docker / GitHub Actions / Vercel</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-8">
+                     <button onclick="scrollToContact('full-stack')" class="shiny-cta" style="--gradient-shine: #818cf8;">
+                        <span>Explore Full Stack</span>
+                    </button>
+                </div>
+            </div>
+          </div>
+
+          <!-- Right: The Infinite 3D Wall (Graphic) -->
+          <div class="absolute right-[-10%] md:right-[-5%] top-[-10%] bottom-[-10%] w-[120%] md:w-[70%] wall-container overflow-hidden pointer-events-none md:pointer-events-auto">
+             <div class="wall-grid h-full w-full flex gap-6 px-10">
+                
+                <!-- Column 1 (Scroll Up) -->
+                <div class="wall-column wall-column-up flex flex-col gap-6 w-full">
+                     <!-- Duplicated items for infinite loop -->
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:nextdotjs" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Next.js</div>
+                            <div class="text-[9px] font-mono text-neutral-500">v14.0.0 (App Rtr)</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:react" width="32" class="text-[#61DAFB]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">React</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Library</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:stripe" width="32" class="text-[#635BFF]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Stripe</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Payments</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:supabase" width="32" class="text-[#3ECF8E]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Supabase</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Database</div>
+                        </div>
+                    </div>
+                    <!-- Clones for loop -->
+                     <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:nextdotjs" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Next.js</div>
+                            <div class="text-[9px] font-mono text-neutral-500">v14.0.0</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:react" width="32" class="text-[#61DAFB]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">React</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Library</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:stripe" width="32" class="text-[#635BFF]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Stripe</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Payments</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:supabase" width="32" class="text-[#3ECF8E]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Supabase</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Database</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2 (Scroll Down) -->
+                <div class="wall-column wall-column-down flex flex-col gap-6 w-full pt-12">
+                     <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:vercel" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Vercel</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Deployment</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:linear" width="32" class="text-[#5E6AD2]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Linear</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Management</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:tailwindcss" width="32" class="text-[#06B6D4]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Tailwind</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Styling</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:openai" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">OpenAI</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Intelligence</div>
+                        </div>
+                    </div>
+                    <!-- Clones -->
+                     <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:vercel" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Vercel</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Deployment</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:linear" width="32" class="text-[#5E6AD2]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Linear</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Management</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:tailwindcss" width="32" class="text-[#06B6D4]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Tailwind</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Styling</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:openai" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">OpenAI</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Intelligence</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3 (Scroll Up) -->
+                <div class="wall-column wall-column-up flex flex-col gap-6 w-full pt-24 hidden lg:flex">
+                     <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:github" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">GitHub</div>
+                            <div class="text-[9px] font-mono text-neutral-500">VCS</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:figma" width="32" class="text-[#F24E1E]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Figma</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Design</div>
+                        </div>
+                    </div>
+                     <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:notion" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Notion</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Wiki</div>
+                        </div>
+                    </div>
+                    <!-- Clones -->
+                     <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:github" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">GitHub</div>
+                            <div class="text-[9px] font-mono text-neutral-500">VCS</div>
+                        </div>
+                    </div>
+                    <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:figma" width="32" class="text-[#F24E1E]"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Figma</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Design</div>
+                        </div>
+                    </div>
+                     <div class="wall-card rounded-xl p-6 aspect-[4/3] flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <iconify-icon icon="simple-icons:notion" width="32" class="text-white"></iconify-icon>
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-mono text-white/80">Notion</div>
+                            <div class="text-[9px] font-mono text-neutral-500">Wiki</div>
+                        </div>
+                    </div>
+                </div>
+
+             </div>
+             
+             <!-- Heavy Masking on the Wall to Blend it -->
+             <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent z-10 pointer-events-none"></div>
+             <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10 pointer-events-none opacity-50"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Capabilities -->
+      <section class="border-b border-white/5 bg-black py-32 relative">
+        <div class="max-w-[1400px] mx-auto px-6">
+          <div class="flex items-end justify-between mb-24">
+            <div>
+              <div class="text-[10px] font-mono text-neutral-500 uppercase mb-4">
+                03 — Services
+              </div>
+              <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white max-w-2xl leading-[1.05]">
+                What I
+                <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-600">
+                  Do Best
+                </span>
+              </h2>
+            </div>
+            <div class="hidden md:block text-right">
+              <div class="text-[10px] font-mono text-neutral-500 uppercase mb-1">
+                Expertise
+              </div>
+              <div class="text-white font-mono text-sm">5+ Years</div>
+            </div>
+          </div>
+
+          <!-- Schematic Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 border border-white/10 overflow-hidden spotlight-grid">
+            <div class="group bg-black p-10 hover:bg-neutral-900/40 transition-colors relative spotlight-card">
+              <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div class="mb-8 text-neutral-700 group-hover:text-emerald-400 transition-colors">
+                <iconify-icon icon="ph:code-light" width="32"></iconify-icon>
+              </div>
+              <h3 class="text-lg font-medium text-white mb-6">Frontend Development</h3>
+              <ul class="space-y-4">
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>React & Next.js</span>
+                  <span class="font-mono text-[10px]">01</span>
+                </li>
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>Responsive Design</span>
+                  <span class="font-mono text-[10px]">02</span>
+                </li>
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>TailwindCSS & Styling</span>
+                  <span class="font-mono text-[10px]">03</span>
+                </li>
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>Performance Optimization</span>
+                  <span class="font-mono text-[10px]">04</span>
+                </li>
+              </ul>
+            </div>
+            <div class="group bg-black p-10 hover:bg-neutral-900/40 transition-colors relative">
+              <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div class="mb-8 text-neutral-700 group-hover:text-purple-400 transition-colors">
+                <iconify-icon icon="ph:database-light" width="32"></iconify-icon>
+              </div>
+              <h3 class="text-lg font-medium text-white mb-6">Backend Development</h3>
+              <ul class="space-y-4">
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>Node.js & Python</span>
+                  <span class="font-mono text-[10px]">05</span>
+                </li>
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>RESTful APIs & GraphQL</span>
+                  <span class="font-mono text-[10px]">06</span>
+                </li>
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>Database Design</span>
+                  <span class="font-mono text-[10px]">07</span>
+                </li>
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>Authentication & Security</span>
+                  <span class="font-mono text-[10px]">08</span>
+                </li>
+              </ul>
+            </div>
+            <div class="group bg-black p-10 hover:bg-neutral-900/40 transition-colors relative">
+              <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div class="mb-8 text-neutral-700 group-hover:text-blue-400 transition-colors">
+                <iconify-icon icon="ph:palette-light" width="32"></iconify-icon>
+              </div>
+              <h3 class="text-lg font-medium text-white mb-6">UI/UX Design</h3>
+              <ul class="space-y-4">
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>Wireframing & Prototyping</span>
+                  <span class="font-mono text-[10px]">09</span>
+                </li>
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>User Research & Testing</span>
+                  <span class="font-mono text-[10px]">10</span>
+                </li>
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>Design Systems</span>
+                  <span class="font-mono text-[10px]">11</span>
+                </li>
+                <li class="flex justify-between text-sm text-neutral-500 group-hover:text-white transition-colors border-b border-white/5 pb-2">
+                  <span>Figma & Adobe Suite</span>
+                  <span class="font-mono text-[10px]">12</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Projects -->
+      <section class="border-b border-white/5 bg-black py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+          <div class="flex items-end justify-between mb-20">
+            <div>
+              <div class="text-[10px] font-mono text-emerald-500 uppercase mb-4 tracking-widest flex items-center gap-2">
+                <span class="w-1 h-1 bg-emerald-500 rounded-full animate-pulse"></span>
+                Featured Work
+              </div>
+              <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white">
+                Recent
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-600">
+                  Projects
+                </span>
+              </h2>
+            </div>
+            <div class="hidden md:flex gap-2">
+              <div class="px-3 py-1 border border-white/10 rounded-full text-[10px] text-neutral-500 font-mono uppercase">
+                Web Apps
+              </div>
+              <div class="px-3 py-1 border border-white/10 rounded-full text-[10px] text-neutral-500 font-mono uppercase">
+                SaaS
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="group relative bg-neutral-900/10 border border-white/10 aspect-[3/4] overflow-hidden glitch-hover">
+              <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity grayscale"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span class="text-[9px] font-mono text-white/70">LIVE</span>
+              </div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <div class="text-[10px] font-mono text-emerald-400 mb-2 glitch-target">
+                  E-COMMERCE
+                </div>
+                <p class="text-sm text-white leading-tight">
+                  Full-Stack Shopping Platform
+                </p>
+              </div>
+              <div class="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-colors pointer-events-none"></div>
+            </div>
+            <div class="group relative bg-neutral-900/10 border border-white/10 aspect-[3/4] overflow-hidden">
+              <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop')] bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity grayscale"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span class="text-[9px] font-mono text-white/70">LIVE</span>
+              </div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <div class="text-[10px] font-mono text-emerald-400 mb-2">
+                  SAAS DASHBOARD
+                </div>
+                <p class="text-sm text-white leading-tight">
+                  Analytics & Management UI
+                </p>
+              </div>
+              <div class="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-colors pointer-events-none"></div>
+            </div>
+            <div class="group relative bg-neutral-900/10 border border-white/10 aspect-[3/4] overflow-hidden">
+              <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity grayscale"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span class="text-[9px] font-mono text-white/70">LIVE</span>
+              </div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <div class="text-[10px] font-mono text-emerald-400 mb-2">
+                  PORTFOLIO
+                </div>
+                <p class="text-sm text-white leading-tight">
+                  Creative Agency Website
+                </p>
+              </div>
+              <div class="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-colors pointer-events-none"></div>
+            </div>
+            <div class="group relative bg-neutral-900/10 border border-white/10 aspect-[3/4] overflow-hidden">
+              <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity grayscale"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span class="text-[9px] font-mono text-white/70">LIVE</span>
+              </div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <div class="text-[10px] font-mono text-emerald-400 mb-2">
+                  MOBILE APP
+                </div>
+                <p class="text-sm text-white leading-tight">
+                  React Native Cross-Platform
+                </p>
+              </div>
+              <div class="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-colors pointer-events-none"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="border-b border-white/5 bg-black py-20 relative">
+        <div class="max-w-[1400px] mx-auto px-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 spotlight-grid">
+            <div class="spotlight-card p-8 border border-white/5 bg-neutral-900/10 backdrop-blur hover:bg-neutral-900/20 transition-colors relative">
+              <iconify-icon icon="ph:quotes-fill" class="text-neutral-700 text-3xl mb-4"></iconify-icon>
+              <p class="text-neutral-400 text-sm mb-6 leading-relaxed">
+                "We needed a Framer site that didn't look like a template.
+                Codezy delivered a masterpiece that converts at 12%."
+              </p>
+              <div class="flex items-center gap-3 relative z-10">
+                <div class="w-8 h-8 bg-neutral-800 rounded-full overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&amp;w=200&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover grayscale opacity-80">
+                </div>
+                <div>
+                  <div class="text-white text-xs font-medium">Alex Hormozi</div>
+                  <div class="text-[10px] text-neutral-500 font-mono">
+                    Acquisition.com
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="spotlight-card p-8 border border-white/5 bg-neutral-900/10 backdrop-blur hover:bg-neutral-900/20 transition-colors relative">
+              <iconify-icon icon="ph:quotes-fill" class="text-neutral-700 text-3xl mb-4"></iconify-icon>
+              <p class="text-neutral-400 text-sm mb-6 leading-relaxed">
+                "The rebranding positioned us as the market leader in B2B SaaS.
+                Our valuation doubled in 6 months."
+              </p>
+              <div class="flex items-center gap-3 relative z-10">
+                <div class="w-8 h-8 bg-neutral-800 rounded-full overflow-hidden">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" class="w-full h-full object-cover grayscale opacity-80">
+                </div>
+                <div>
+                  <div class="text-white text-xs font-medium">Sarah Chen</div>
+                  <div class="text-[10px] text-neutral-500 font-mono">
+                    Founders Fund
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="spotlight-card p-8 border border-white/5 bg-neutral-900/10 backdrop-blur hover:bg-neutral-900/20 transition-colors relative">
+              <iconify-icon icon="ph:quotes-fill" class="text-neutral-700 text-3xl mb-4"></iconify-icon>
+              <p class="text-neutral-400 text-sm mb-6 leading-relaxed">
+                "Incredible speed. They used Lovable to prototype and Webflow to
+                scale. The perfect modern agency."
+              </p>
+              <div class="flex items-center gap-3 relative z-10">
+                <div class="w-8 h-8 bg-neutral-800 rounded-full overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&amp;w=200&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover grayscale opacity-80">
+                </div>
+                <div>
+                  <div class="text-white text-xs font-medium">David Park</div>
+                  <div class="text-[10px] text-neutral-500 font-mono">
+                    Y Combinator
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pipeline -->
+      <section class="border-b border-white/5 bg-black py-32 overflow-hidden">
+        <div class="max-w-[1400px] mx-auto px-6">
+          <div class="text-[10px] font-mono text-neutral-500 uppercase mb-12">
+            04 — Pipeline
+          </div>
+
+          <!-- Visual Pipeline -->
+          <div class="relative mt-20">
+            <!-- Connection Line -->
+            <div class="absolute top-[27px] left-0 w-full h-px bg-white/10 z-0"></div>
+            <div class="absolute top-[27px] left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent z-0 animate-[shimmer_2s_infinite]"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+              <!-- Step 1 -->
+              <div class="group hover:-translate-y-2 transition-transform duration-300 cursor-default">
+                <div class="w-14 h-14 bg-black border border-white/20 rounded-full flex items-center justify-center mb-8 group-hover:border-white transition-colors relative">
+                  <span class="text-sm font-mono text-white">01</span>
+                  <div class="absolute inset-0 rounded-full border border-white/50 scale-110 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
+                </div>
+                <h4 class="text-lg text-white font-medium mb-3">Discovery</h4>
+                <p class="text-sm text-neutral-500 leading-relaxed">
+                  Deep dive into market mechanics, user psychology, and
+                  competitive whitespace.
+                </p>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="group">
+                <div class="w-14 h-14 bg-black border border-white/20 rounded-full flex items-center justify-center mb-8 group-hover:border-white transition-colors relative">
+                  <span class="text-sm font-mono text-white">02</span>
+                </div>
+                <h4 class="text-lg text-white font-medium mb-3">Prototype</h4>
+                <p class="text-sm text-neutral-500 leading-relaxed">
+                  Low-fidelity structural engineering followed by high-fidelity
+                  motion studies.
+                </p>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="group">
+                <div class="w-14 h-14 bg-black border border-white/20 rounded-full flex items-center justify-center mb-8 group-hover:border-white transition-colors relative">
+                  <span class="text-sm font-mono text-white">03</span>
+                </div>
+                <h4 class="text-lg text-white font-medium mb-3">Develop</h4>
+                <p class="text-sm text-neutral-500 leading-relaxed">
+                  Component-driven development using scalable frameworks and
+                  strict type safety.
+                </p>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="group">
+                <div class="w-14 h-14 bg-black border border-white/20 rounded-full flex items-center justify-center mb-8 group-hover:border-white transition-colors relative">
+                  <span class="text-sm font-mono text-white">04</span>
+                  <div class="absolute w-2 h-2 bg-green-500 rounded-full top-0 right-0 animate-pulse"></div>
+                </div>
+                <h4 class="text-lg text-white font-medium mb-3">Deploy</h4>
+                <p class="text-sm text-neutral-500 leading-relaxed">
+                  Global edge distribution, performance monitoring, and
+                  iterative optimization.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Engagement Models -->
+      <section class="border-b border-white/5 bg-black py-32 relative">
+        <div class="max-w-[1400px] mx-auto px-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-4">
+              <div class="text-[10px] font-mono text-neutral-500 uppercase mb-4">
+                05 — FAQ
+              </div>
+              <h2 class="text-3xl md:text-4xl text-white font-medium tracking-tight mb-6">
+                Frequently Asked
+                <br>
+                Questions
+              </h2>
+              <p class="text-sm text-neutral-500 max-w-xs leading-relaxed">
+                Everything you need to know about working together.
+              </p>
+            </div>
+            <div class="lg:col-span-8 border-t border-white/10">
+              <div class="group border-b border-white/10">
+                <details class="group">
+                  <summary class="flex justify-between items-center py-6 cursor-pointer list-none outline-none">
+                    <span class="text-white font-medium tracking-tight">
+                      How long does a typical project take?
+                    </span>
+                    <span class="text-neutral-500 font-mono text-xs group-open:rotate-45 transition-transform duration-300">
+                      +
+                    </span>
+                  </summary>
+                  <div class="pb-6 text-neutral-400 text-sm leading-relaxed max-w-2xl overflow-hidden">
+                    <p>
+                      Most projects are completed in 2-6 weeks depending on complexity. 
+                      I focus on delivering high-quality work efficiently while maintaining 
+                      clean code and best practices throughout the development process.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="group border-b border-white/10">
+                <details class="group">
+                  <summary class="flex justify-between items-center py-6 cursor-pointer list-none outline-none">
+                    <span class="text-white font-medium tracking-tight">
+                      Can you work with our existing team?
+                    </span>
+                    <span class="text-neutral-500 font-mono text-xs group-open:rotate-45 transition-transform duration-300">
+                      +
+                    </span>
+                  </summary>
+                  <div class="pb-6 text-neutral-400 text-sm leading-relaxed max-w-2xl overflow-hidden">
+                    <p>
+                      Absolutely! I frequently collaborate with in-house teams and can integrate 
+                      seamlessly with your existing workflows. I'm comfortable with Git, 
+                      Slack, and other collaboration tools to ensure smooth communication.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="group border-b border-white/10">
+                <details class="group">
+                  <summary class="flex justify-between items-center py-6 cursor-pointer list-none outline-none">
+                    <span class="text-white font-medium tracking-tight">
+                      Do you provide ongoing support after launch?
+                    </span>
+                    <span class="text-neutral-500 font-mono text-xs group-open:rotate-45 transition-transform duration-300">
+                      +
+                    </span>
+                  </summary>
+                  <div class="pb-6 text-neutral-400 text-sm leading-relaxed max-w-2xl overflow-hidden">
+                    <p>
+                      Yes! I offer retainer partnerships for ongoing maintenance, updates, 
+                      and continuous improvement. This ensures your project stays optimized 
+                      and evolves with your business needs over time.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="group border-b border-white/10">
+                <details class="group">
+                  <summary class="flex justify-between items-center py-6 cursor-pointer list-none outline-none">
+                    <span class="text-white font-medium tracking-tight">
+                      What technologies do you specialize in?
+                    </span>
+                    <span class="text-neutral-500 font-mono text-xs group-open:rotate-45 transition-transform duration-300">
+                      +
+                    </span>
+                  </summary>
+                  <div class="pb-6 text-neutral-400 text-sm leading-relaxed max-w-2xl overflow-hidden">
+                    <p>
+                      I specialize in modern web technologies including React, Next.js, Node.js, 
+                      Python, and various databases. I also work with design tools like 
+                      Figma and implement responsive designs using TailwindCSS.
+                    </p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-32 bg-black border-b border-white/5 relative">
+        <div class="max-w-[1400px] mx-auto px-6">
+          <div class="flex flex-col md:flex-row justify-between items-start mb-12 border-b border-white/5 pb-6">
+            <div>
+              <div class="text-[10px] font-mono text-neutral-500 uppercase mb-2">
+                06 — Collaboration
+              </div>
+              <h2 class="text-4xl font-medium tracking-tight text-white mb-4">
+                How We Work
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-600">
+                  Together
+                </span>
+              </h2>
+              <p class="text-neutral-500 text-sm max-w-full md:max-w-sm text-center md:text-left">
+                Flexible collaboration models tailored to your project needs.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Model 1: Project-Based -->
+            <div class="group border border-white/10 p-10 bg-neutral-900/10 hover:bg-neutral-900/30 transition-all duration-500 relative overflow-hidden">
+              <div class="absolute top-0 right-0 p-4">
+                <iconify-icon icon="ph:rocket-launch-light" width="32" class="text-white opacity-20 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </div>
+              <div class="mb-12">
+                <h3 class="text-2xl font-medium text-white mb-2">
+                  Project-Based
+                </h3>
+                <p class="text-sm text-neutral-500">
+                  Complete solutions from concept to deployment.
+                </p>
+              </div>
+              <div class="space-y-4 mb-12">
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Full-Stack Development
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Frontend (React, Next.js)
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Backend (Node.js, Python)
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  UI/UX Design
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Database Design
+                </div>
+              </div>
+              <button onclick="scrollToContact('full-stack')" class="w-full py-4 border border-white/10 text-xs font-mono uppercase tracking-widest text-white hover:bg-white hover:text-black transition-colors magnetic-btn">
+                Start Project
+              </button>
+            </div>
+
+            <!-- Model 2: Retainer -->
+            <div class="group border border-emerald-500/20 p-10 bg-emerald-900/10 hover:bg-emerald-900/20 transition-all duration-500 relative overflow-hidden">
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-600 border border-emerald-400 rounded-full">
+                <span class="text-[10px] font-mono text-white uppercase tracking-widest font-bold">Popular</span>
+              </div>
+              <div class="absolute top-0 right-0 p-4">
+                <iconify-icon icon="ph:infinity-light" width="32" class="text-emerald-400 opacity-20 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </div>
+              <div class="mb-12">
+                <h3 class="text-2xl font-medium text-white mb-2">
+                  Retainer
+                </h3>
+                <p class="text-sm text-neutral-500">
+                  Ongoing support and continuous improvement.
+                </p>
+              </div>
+              <div class="space-y-4 mb-12">
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Monthly Development Hours
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Bug Fixes & Updates
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Performance Optimization
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  New Feature Development
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Priority Support
+                </div>
+              </div>
+              <button onclick="scrollToContact('retainer')" class="w-full py-4 bg-emerald-500 text-black text-xs font-bold tracking-widest uppercase hover:bg-emerald-400 transition-colors magnetic-btn">
+                Become Partner
+              </button>
+            </div>
+
+            <!-- Model 3: Consulting -->
+            <div class="group border border-white/10 p-10 bg-neutral-900/10 hover:bg-neutral-900/30 transition-all duration-500 relative overflow-hidden">
+              <div class="absolute top-0 right-0 p-4">
+                <iconify-icon icon="ph:brain-light" width="32" class="text-white opacity-20 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </div>
+              <div class="mb-12">
+                <h3 class="text-2xl font-medium text-white mb-2">
+                  Consulting
+                </h3>
+                <p class="text-sm text-neutral-500">
+                  Expert guidance for your technical challenges.
+                </p>
+              </div>
+              <div class="space-y-4 mb-12">
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Code Review & Audit
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Architecture Planning
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Tech Stack Selection
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Performance Analysis
+                </div>
+                <div class="text-sm text-neutral-300 flex items-center gap-2">
+                  <div class="w-1 h-1 bg-emerald-500 rounded-full"></div>
+                  Team Training
+                </div>
+              </div>
+              <button onclick="scrollToContact('consulting')" class="w-full py-4 border border-white/10 text-xs font-mono uppercase tracking-widest text-white hover:bg-white hover:text-black transition-colors magnetic-btn">
+                Book Consultation
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-16 bg-black border-b border-white/5 relative" style="overflow-x: visible;">
+        <div class="max-w-[1400px] mx-auto px-6" style="overflow-x: visible;">
+          <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+            <div class="w-full md:w-auto">
+              <div class="text-[10px] font-mono text-neutral-500 uppercase mb-4">
+                07 — Get Started
+              </div>
+              <h2 class="text-4xl font-medium tracking-tight text-white">
+                Let's Build
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-600">
+                  Together
+                </span>
+              </h2>
+            </div>
+            
+            <div class="flex items-center gap-3 mt-0 md:mt-0">
+                <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span class="text-xs font-medium text-emerald-400">Available for Projects</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12" style="overflow-x: visible;">
+            <!-- Left: Contact Info -->
+            <div class="space-y-8">
+              <div class="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+                <h3 class="text-lg font-medium text-white mb-6">Project Details</h3>
+                <div class="space-y-4">
+                  <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0">
+                      <iconify-icon icon="ph:code-light" class="text-neutral-400"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-white text-sm font-medium mb-1">Web Development</div>
+                      <div class="text-[10px] text-neutral-500 font-mono uppercase">React, Next.js, Node.js</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0">
+                      <iconify-icon icon="ph:palette-light" class="text-neutral-400"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-white text-sm font-medium mb-1">UI/UX Design</div>
+                      <div class="text-[10px] text-neutral-500 font-mono uppercase">Figma, TailwindCSS</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0">
+                      <iconify-icon icon="ph:rocket-launch-light" class="text-neutral-400"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-white text-sm font-medium mb-1">Performance Optimization</div>
+                      <div class="text-[10px] text-neutral-500 font-mono uppercase">Vercel, Cloudflare</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-6 border border-emerald-500/20 bg-emerald-900/10 backdrop-blur-xl">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest">Response Time</span>
+                </div>
+                <p class="text-sm text-neutral-300">
+                  I typically respond within 24 hours. Let's discuss your project requirements and timeline.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors" style="overflow-x: visible;">
+              <form id="contactForm" class="space-y-6" style="overflow-x: visible;">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-[10px] font-mono text-neutral-500 uppercase mb-2">Name</label>
+                    <input type="text" name="name" required class="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-neutral-600 focus:border-emerald-500/50 focus:outline-none transition-colors" placeholder="John Doe">
+                  </div>
+                  <div>
+                    <label class="block text-[10px] font-mono text-neutral-500 uppercase mb-2">Email</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-neutral-600 focus:border-emerald-500/50 focus:outline-none transition-colors" placeholder="john@example.com">
+                  </div>
+                </div>
+                
+                <div>
+                  <label class="block text-[10px] font-mono text-neutral-500 uppercase mb-2">Project Type</label>
+                  <input type="hidden" name="projectType" id="projectTypeInput" required>
+                  <div class="relative">
+                    <button type="button" id="projectTypeBtn" class="w-full px-4 py-4 bg-black/50 border border-white/10 rounded-lg text-white focus:border-emerald-500/50 focus:outline-none transition-colors cursor-pointer text-base md:text-sm flex items-center justify-between">
+                      <span id="projectTypeLabel" class="text-left">Select a service</span>
+                      <iconify-icon icon="ph:caret-down" width="18" class="text-white/60"></iconify-icon>
+                    </button>
+                    <div id="projectTypeMenu" class="hidden absolute left-0 right-0 mt-2 bg-neutral-950 border border-white/10 rounded-lg overflow-hidden z-50">
+                      <button type="button" class="project-type-option w-full text-left px-4 py-3 text-sm text-neutral-200 hover:bg-white/5" data-value="web-development">Web Development</button>
+                      <button type="button" class="project-type-option w-full text-left px-4 py-3 text-sm text-neutral-200 hover:bg-white/5" data-value="ui-design">UI/UX Design</button>
+                      <button type="button" class="project-type-option w-full text-left px-4 py-3 text-sm text-neutral-200 hover:bg-white/5" data-value="full-stack">Full Stack Project</button>
+                      <button type="button" class="project-type-option w-full text-left px-4 py-3 text-sm text-neutral-200 hover:bg-white/5" data-value="optimization">Performance Optimization</button>
+                      <button type="button" class="project-type-option w-full text-left px-4 py-3 text-sm text-neutral-200 hover:bg-white/5" data-value="consulting">Technical Consulting</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-mono text-neutral-500 uppercase mb-2">Project Details</label>
+                  <textarea name="message" rows="4" required class="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-neutral-600 focus:border-emerald-500/50 focus:outline-none transition-colors resize-none" placeholder="Tell me about your project..."></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-mono text-neutral-500 uppercase mb-2">Budget Range</label>
+                  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <label class="cursor-pointer">
+                      <input type="radio" name="budget" value="1k-5k" class="sr-only peer">
+                      <div class="px-3 py-2 border border-white/10 rounded-lg text-center text-[10px] font-mono text-neutral-400 peer-checked:border-emerald-500 peer-checked:text-emerald-400 peer-checked:bg-emerald-900/20 transition-all">
+                        $1K-$5K
+                      </div>
+                    </label>
+                    <label class="cursor-pointer">
+                      <input type="radio" name="budget" value="5k-10k" class="sr-only peer">
+                      <div class="px-3 py-2 border border-white/10 rounded-lg text-center text-[10px] font-mono text-neutral-400 peer-checked:border-emerald-500 peer-checked:text-emerald-400 peer-checked:bg-emerald-900/20 transition-all">
+                        $5K-$10K
+                      </div>
+                    </label>
+                    <label class="cursor-pointer">
+                      <input type="radio" name="budget" value="10k-20k" class="sr-only peer">
+                      <div class="px-3 py-2 border border-white/10 rounded-lg text-center text-[10px] font-mono text-neutral-400 peer-checked:border-emerald-500 peer-checked:text-emerald-400 peer-checked:bg-emerald-900/20 transition-all">
+                        $10K-$20K
+                      </div>
+                    </label>
+                    <label class="cursor-pointer">
+                      <input type="radio" name="budget" value="20k+" class="sr-only peer">
+                      <div class="px-3 py-2 border border-white/10 rounded-lg text-center text-[10px] font-mono text-neutral-400 peer-checked:border-emerald-500 peer-checked:text-emerald-400 peer-checked:bg-emerald-900/20 transition-all">
+                        $20K+
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-neutral-200 transition-all duration-300 magnetic-btn">
+                  <span class="flex items-center justify-center gap-2">
+                    Send Project Request
+                    <iconify-icon icon="ph:paper-plane-right-light" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                  </span>
+                </button>
+              </form>
+
+              <div id="formMessage" class="hidden mt-4 p-4 rounded-lg text-sm font-mono"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Video CTA Card Section (High-End Layout) -->
+      <section class="py-32 bg-black border-b border-white/5 relative">
+        <div class="max-w-[1400px] mx-auto px-6">
+          <div class="relative z-10 w-full bg-black border border-white/10 rounded-3xl overflow-hidden min-h-[600px] flex flex-col items-center justify-center group isolate">
+            <!-- Background Video Card -->
+            <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[80px] mix-blend-screen animate-pulse duration-[8s]"></div>
+              <video autoplay="" loop="" muted="" playsinline="" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen" style="filter: hue-rotate(240deg) contrast(1.2) saturate(1.2);">
+                <source src="https://cdn.coverr.co/videos/coverr-digital-lines-moving-background-4770/1080p.mp4" type="video/mp4">
+              </video>
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,black_100%)]"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></div>
+              <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 flex flex-col items-center text-center p-8 md:p-12 max-w-3xl mx-auto">
+              <div class="inline-flex items-center gap-2 px-4 py-2 mb-10 border border-purple-500/20 rounded-full bg-purple-900/10 backdrop-blur-xl shadow-[0_0_20px_rgba(168,85,247,0.1)]">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                </span>
+                <span class="text-[10px] font-mono text-purple-200 uppercase tracking-widest">
+                  Capacity: 2 Slots Remaining
+                </span>
+              </div>
+              <h2 class="text-4xl md:text-5xl font-medium tracking-tighter text-white mb-6 leading-[1.1] md:leading-[0.9]">
+                Ready to Create
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-200 to-purple-400">
+                  Something Amazing
+                </span>
+              </h2>
+              <p class="text-neutral-400 text-base md:text-lg font-light leading-relaxed max-w-lg mb-8 md:mb-12">
+                I'm excited to collaborate on new projects and bring innovative ideas to life. 
+                Let's build something extraordinary together!
+              </p>
+              
+              <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                <!-- Shiny CTA Button -->
+                <button onclick="scrollToContact('full-stack')" class="shiny-cta w-full md:w-auto px-8 py-4" style="--gradient-shine: #a855f7;">
+                  <span>Start Your Project</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-black pt-32 pb-12 border-t border-white/10">
+        <div class="max-w-[1400px] mx-auto px-6">
+          <div class="flex flex-col md:flex-row justify-between items-center mb-24 text-center md:text-left">
+            <div class="text-[15vw] leading-[0.8] font-bold tracking-tighter text-white opacity-90 select-none hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-t hover:from-neutral-800 hover:to-white transition-all duration-700 cursor-default">
+              CODEZY
+            </div>
+            <div class="flex flex-col gap-4 text-center md:text-right mb-4">
+              <a href="#contact" class="text-lg text-neutral-400 hover:text-white transition-colors">
+                Start a Project →
+              </a>
+              <div class="text-sm text-neutral-600">
+                Global • Remote • Flexible
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/10 pt-12">
+            <!-- Services Column -->
+            <div>
+              <h4 class="text-[10px] font-mono uppercase text-neutral-500 mb-6">
+                Services
+              </h4>
+              <ul class="space-y-3 text-sm text-neutral-400">
+                <li><a href="#services" class="hover:text-white transition-colors">Web Development</a></li>
+                <li><a href="#solutions" class="hover:text-white transition-colors">UI/UX Design</a></li>
+                <li><a href="#contact" class="hover:text-white transition-colors">AI Solutions</a></li>
+              </ul>
+            </div>
+
+            <!-- Company Column -->
+            <div>
+              <h4 class="text-[10px] font-mono uppercase text-neutral-500 mb-6">
+                Company
+              </h4>
+              <ul class="space-y-3 text-sm text-neutral-400">
+                <li><a href="#services" class="hover:text-white transition-colors">Case Index</a></li>
+                <li><a href="#solutions" class="hover:text-white transition-colors">Expertise</a></li>
+                <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+              </ul>
+            </div>
+
+            <!-- Connect Column -->
+            <div class="md:text-right">
+              <h4 class="text-[10px] font-mono uppercase text-neutral-500 mb-6 text-left md:text-right">
+                Connect
+              </h4>
+              <div class="flex gap-4 mb-6 justify-start md:justify-end">
+                <a href="https://www.linkedin.com/in/yazar-salih" target="_blank" class="w-10 h-10 rounded border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                  <iconify-icon icon="simple-icons:linkedin" width="18" class="text-white"></iconify-icon>
+                </a>
+                <a href="https://medium.com/@yzr.salih.yzr" target="_blank" class="w-10 h-10 rounded border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                  <iconify-icon icon="simple-icons:medium" width="18" class="text-white"></iconify-icon>
+                </a>
+                <a href="https://github.com/YzrSalih" target="_blank" class="w-10 h-10 rounded border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                  <iconify-icon icon="simple-icons:github" width="18" class="text-white"></iconify-icon>
+                </a>
+              </div>
+              <div class="flex items-center gap-2 justify-start md:justify-end">
+                <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span class="text-xs font-medium text-emerald-400">Available for Projects</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bottom Bar -->
+          <div class="flex flex-col md:flex-row justify-between items-center mt-12 pt-8 border-t border-white/5">
+            <p class="text-[10px] font-mono text-neutral-600">
+              © 2026 Codezy. All rights reserved.
+            </p>
+            <div class="flex items-center gap-6 mt-4 md:mt-0">
+              <a href="#privacy" class="text-[10px] text-neutral-600 hover:text-white transition-colors">Privacy</a>
+              <a href="#terms" class="text-[10px] text-neutral-600 hover:text-white transition-colors">Terms</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  
+</body></html>
