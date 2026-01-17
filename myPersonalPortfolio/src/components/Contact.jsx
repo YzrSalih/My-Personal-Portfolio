@@ -75,6 +75,37 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-20 px-4 flex flex-col items-center justify-center text-white">
+      {/* Success Modal/Overlay */}
+      {status === 'success' && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-xl" onClick={() => setStatus('')}></div>
+          <div className="relative bg-neutral-900 border border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-2xl max-w-sm w-full text-center transform animate-in fade-in zoom-in duration-300">
+            <button
+              onClick={() => setStatus('')}
+              className="absolute top-6 right-6 text-white/20 hover:text-white transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-500/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-10 h-10 text-green-500">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold mb-2">Request Received!</h3>
+            <p className="text-white/60 mb-8 text-sm leading-relaxed">
+              Thank you for reaching out. Your message has been sent successfully. We are redirecting you to the booking page.
+            </p>
+            <div className="flex items-center justify-center gap-3 text-xs text-purple-400 font-medium bg-purple-500/5 py-3 rounded-xl border border-purple-500/10">
+              <div className="w-3 h-3 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+              Redirecting to calendar...
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-6xl w-full bg-white/[0.02] border border-white/10 backdrop-blur-2xl p-8 md:p-12 rounded-[2.5rem] shadow-2xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 
