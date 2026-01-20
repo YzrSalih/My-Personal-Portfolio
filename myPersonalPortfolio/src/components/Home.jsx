@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Footer from "./Footer"; 
+import Footer from "./Footer";
 import useIsMobile from './hooks/useIsMobile';
 import HomeMobile from './HomeMobile';
 import ExperienceDetails from './ExperienceDetails';
@@ -35,7 +35,7 @@ const Home = () => {
   if (isMobile) return <HomeMobile />;
 
   return (
-    <div className="bg-[#050505] text-white min-h-screen font-sans overflow-x-hidden">
+    <div className="text-white min-h-screen font-sans overflow-x-hidden">
       {/* Arka Plan Izgarası */}
       <div className="fixed inset-0 technical-grid pointer-events-none opacity-40"></div>
 
@@ -43,11 +43,11 @@ const Home = () => {
         {/* --- AURA HERO BÖLÜMÜ --- */}
         <section className="max-w-7xl mx-auto px-6 pt-32 pb-20 border-b border-white/5">
           <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 border border-emerald-500/20 rounded-full bg-emerald-500/5 backdrop-blur-sm">
-             <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-             </span>
-             <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest">Introduction</span>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest">Introduction</span>
           </div>
 
           <h1 className="text-5xl md:text-8xl font-medium tracking-tighter mb-10 leading-[0.9]">
@@ -57,19 +57,19 @@ const Home = () => {
 
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
             <p className="max-w-xl text-lg text-neutral-400 leading-relaxed font-light">
-              Full Stack Developer focused on crafting performant, accessible and visually cohesive web applications. 
+              Full Stack Developer focused on crafting performant, accessible and visually cohesive web applications.
               I enjoy translating complex problems into elegant, scalable interface architectures.
             </p>
             <div className="flex gap-4">
-               <a href="https://www.linkedin.com/in/salih-yazar-216835206/" target="_blank" className="px-8 py-4 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-neutral-200 transition-all">Connect ↗</a>
-               <Link to="/projects" className="px-8 py-4 border border-white/10 text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-all">Projects</Link>
+              <a href="https://www.linkedin.com/in/salih-yazar-216835206/" target="_blank" className="px-8 py-4 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-neutral-200 transition-all">Connect ↗</a>
+              <Link to="/projects" className="px-8 py-4 border border-white/10 text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-all">Projects</Link>
             </div>
           </div>
         </section>
 
         {/* --- SERTİFİKALAR & EĞİTİM (VERİLERİN BURADA) --- */}
         <section className="max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
+
           {/* Sertifikalar Kartı */}
           <div className="wall-card rounded-3xl p-10">
             <h2 className="text-xs font-mono text-emerald-400 uppercase tracking-[0.3em] mb-10">Professional Certifications</h2>

@@ -1,4 +1,5 @@
-@import "tailwindcss"; /* Tailwind v4 için yeni standart kullanım */
+@import "tailwindcss";
+/* Tailwind v4 için yeni standart kullanım */
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -6,9 +7,7 @@
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.9);
-  /* Aura Arka Planı */
-  background: linear-gradient(120deg, #1a0033 0%, #0a0a23 100%);
-  background-attachment: fixed;
+  /* Aura Arka Planı Kaldırıldı - index.html'deki component kullanılıyor */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,18 +20,29 @@ body {
   min-height: 100vh;
   display: block;
   font-family: 'Montserrat', system-ui, sans-serif;
-  background-color: #000000;
+  background-color: transparent;
   overflow-x: hidden;
 }
 
 /* Standart Link ve Buton Ayarları */
-a { font-weight: 500; color: #646cff; text-decoration: inherit; }
-a:hover { color: #535bf2; }
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
 
 button {
-  border-radius: 8px; border: 1px solid transparent;
-  padding: 0.6em 1.2em; font-size: 1em; font-weight: 500;
-  background-color: #1a1a1a; cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: #1a1a1a;
+  cursor: pointer;
   transition: border-color 0.25s;
 }
 
@@ -40,24 +50,18 @@ button {
 
 /* Technical Grid */
 .technical-grid {
-background-size: 40px 40px;
-background-image: linear-gradient(
-to right,
-rgba(255, 255, 255, 0.02) 1px,
-transparent 1px
-),
-linear-gradient(
-to bottom,
-rgba(255, 255, 255, 0.02) 1px,
-transparent 1px
-);
-mask-image: linear-gradient(
-to bottom,
-transparent 5%,
-black 40%,
-black 70%,
-transparent 95%
-);
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px),
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px);
+  mask-image: linear-gradient(to bottom,
+      transparent 5%,
+      black 40%,
+      black 70%,
+      transparent 95%);
 }
 
 .wall-card {
@@ -75,7 +79,7 @@ transparent 95%
 }
 
 .text-gradient {
-  background: linear-gradient(to bottom, #fff 30%, rgba(255,255,255,0.5) 100%);
+  background: linear-gradient(to bottom, #fff 30%, rgba(255, 255, 255, 0.5) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -83,215 +87,280 @@ transparent 95%
 
 /* Custom Switch */
 .toggle-switch {
-width: 32px;
-height: 18px;
-background: rgba(255, 255, 255, 0.1);
-border-radius: 99px;
-position: relative;
-border: 1px solid rgba(255, 255, 255, 0.1);
-transition: all 0.3s ease;
-cursor: pointer;
+  width: 32px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
+
 .toggle-switch::after {
-content: "";
-position: absolute;
-left: 2px;
-top: 2px;
-width: 12px;
-height: 12px;
-background: white;
-border-radius: 50%;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-transition: all 0.3s ease;
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
+
 .toggle-switch.active {
-background: rgba(16, 185, 129, 0.2);
-border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.5);
 }
+
 .toggle-switch.active::after {
-transform: translateX(14px);
-background: #34d399;
-box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+  transform: translateX(14px);
+  background: #34d399;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
 }
+
 /* Animations */
 @keyframes animationIn {
-0% {
-opacity: 0;
-transform: translateY(20px);
-filter: blur(5px);
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
 }
-100% {
-opacity: 1;
-transform: translateY(0);
-filter: blur(0px);
-}
-}
+
 .animate-on-scroll {
-animation-play-state: paused !important;
+  animation-play-state: paused !important;
 }
+
 .animate-on-scroll.animate {
-animation-play-state: running !important;
+  animation-play-state: running !important;
 }
+
 /* Noise Overlay */
 body::before {
-content: "";
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: url("https://grainy-gradients.vercel.app/noise.svg");
-opacity: 0.04;
-pointer-events: none;
-z-index: 100;
-mix-blend-mode: overlay;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: overlay;
 }
+
 /* Spotlight */
 .spotlight-grid {
---mouse-x: -1000px;
---mouse-y: -1000px;
+  --mouse-x: -1000px;
+  --mouse-y: -1000px;
 }
+
 .spotlight-card::after {
-content: "";
-position: absolute;
-inset: 0;
-background: radial-gradient(
-600px circle at var(--mouse-x) var(--mouse-y),
-rgba(255, 255, 255, 0.06),
-transparent 40%
-);
-opacity: 0;
-transition: opacity 0.3s;
-pointer-events: none;
-z-index: 2;
-mix-blend-mode: screen;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.06),
+      transparent 40%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
 }
+
 .spotlight-grid:hover .spotlight-card::after {
-opacity: 1;
+  opacity: 1;
 }
+
 /* Marquee */
 .marquee-wrapper {
-mask-image: linear-gradient(
-to right,
-transparent,
-black 10%,
-black 90%,
-transparent
-);
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
 }
+
 .marquee-content {
-display: flex;
-gap: 4rem;
-width: max-content;
-animation: marquee 40s linear infinite;
+  display: flex;
+  gap: 4rem;
+  width: max-content;
+  animation: marquee 40s linear infinite;
 }
+
 @keyframes marquee {
-0% {
-transform: translateX(0);
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
-100% {
-transform: translateX(-50%);
-}
-}
+
 /* Magnetic Button */
 .magnetic-btn {
-transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 /* Glitch Effect */
 .glitch-hover:hover .glitch-target {
-animation: glitch-anim 0.3s infinite;
+  animation: glitch-anim 0.3s infinite;
 }
+
 @keyframes glitch-anim {
-0% {
-transform: translate(0);
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-1px, 1px);
+  }
+
+  40% {
+    transform: translate(-1px, -1px);
+  }
+
+  60% {
+    transform: translate(1px, 1px);
+  }
+
+  80% {
+    transform: translate(1px, -1px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
 }
-20% {
-transform: translate(-1px, 1px);
-}
-40% {
-transform: translate(-1px, -1px);
-}
-60% {
-transform: translate(1px, 1px);
-}
-80% {
-transform: translate(1px, -1px);
-}
-100% {
-transform: translate(0);
-}
-}
+
 /* Shiny CTA Button */
-@property --gradient-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-@property --gradient-angle-offset { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-@property --gradient-percent { syntax: "<percentage>"; initial-value: 20%; inherits: false; }
-@property --gradient-shine { syntax: "<color>"; initial-value: #10b981; inherits: false; }
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-angle-offset {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-percent {
+  syntax: "<percentage>";
+  initial-value: 20%;
+  inherits: false;
+}
+
+@property --gradient-shine {
+  syntax: "<color>";
+  initial-value: #10b981;
+  inherits: false;
+}
+
 .shiny-cta {
---gradient-angle: 0deg;
---gradient-angle-offset: 0deg;
---gradient-percent: 20%;
---gradient-shine: #10b981;
-position: relative;
-overflow: hidden;
-border-radius: 9999px;
-padding: 1rem 2.5rem;
-font-family: inherit;
-font-size: 0.75rem;
-line-height: 1;
-font-weight: 600;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: #ffffff;
-background: linear-gradient(#000000, #000000) padding-box, conic-gradient( from calc(var(--gradient-angle) - var(--gradient-angle-offset)), transparent 0%, #065f46 5%, var(--gradient-shine) 15%, #065f46 30%, transparent 40%, transparent 100% ) border-box;
-border: 1px solid transparent;
-box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
-outline: none;
-transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-cursor: pointer;
-isolation: isolate;
-z-index: 0;
-animation: border-spin 3s linear infinite;
+  --gradient-angle: 0deg;
+  --gradient-angle-offset: 0deg;
+  --gradient-percent: 20%;
+  --gradient-shine: #10b981;
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  padding: 1rem 2.5rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from calc(var(--gradient-angle) - var(--gradient-angle-offset)), transparent 0%, #065f46 5%, var(--gradient-shine) 15%, #065f46 30%, transparent 40%, transparent 100%) border-box;
+  border: 1px solid transparent;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  outline: none;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  isolation: isolate;
+  z-index: 0;
+  animation: border-spin 3s linear infinite;
 }
-@keyframes border-spin { to { --gradient-angle: 360deg; } }
+
+@keyframes border-spin {
+  to {
+    --gradient-angle: 360deg;
+  }
+}
+
 .shiny-cta:hover {
---gradient-shine: #34d399;
-transform: scale(1.02);
-box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 0 1px rgba(255,255,255,0.2);
+  --gradient-shine: #34d399;
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
+
 /* Pricing Card Gradient */
 .pricing-highlight {
-background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 40%),
-linear-gradient(to bottom, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 40%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
 }
+
 /* --- THE WALL STYLES --- */
 .wall-container {
-perspective: 2000px;
-transform-style: preserve-3d;
+  perspective: 2000px;
+  transform-style: preserve-3d;
 }
+
 .wall-grid {
-transform: rotateY(-18deg) rotateX(10deg) rotateZ(-2deg) scale(1.1);
-transform-style: preserve-3d;
+  transform: rotateY(-18deg) rotateX(10deg) rotateZ(-2deg) scale(1.1);
+  transform-style: preserve-3d;
 }
+
 .wall-column {
-will-change: transform;
+  will-change: transform;
 }
+
 .wall-column-up {
-animation: scrollUp 40s linear infinite;
+  animation: scrollUp 40s linear infinite;
 }
+
 .wall-column-down {
-animation: scrollDown 40s linear infinite;
+  animation: scrollDown 40s linear infinite;
 }
+
 @keyframes scrollUp {
-0% { transform: translateY(0); }
-100% { transform: translateY(-50%); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
 }
+
 @keyframes scrollDown {
-0% { transform: translateY(-50%); }
-100% { transform: translateY(0); }
+  0% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
+
 /* Masking the Wall */
 .wall-mask {
-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent),
-linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-mask-composite: intersect;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent),
+    linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  mask-composite: intersect;
 }

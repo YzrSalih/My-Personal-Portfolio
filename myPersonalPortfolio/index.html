@@ -11,7 +11,7 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <style>
     body {
-      background-color: #000000;
+      background-color: transparent;
       color: #e5e5e5;
       font-family: "Inter", sans-serif;
       letter-spacing: -0.01em;
@@ -580,16 +580,9 @@
 </head>
 
 <body class="relative min-h-screen selection:bg-white selection:text-black pt-32">
-  <!-- Hero Video Background -->
-  <div class="fixed inset-0 -z-30 w-full h-full overflow-hidden pointer-events-none">
-    <video autoplay="" loop="" muted="" playsinline="" class="w-full h-full object-cover opacity-20 mix-blend-screen"
-      style="filter: hue-rotate(150deg) contrast(1.2);">
-      <source src="https://cdn.coverr.co/videos/coverr-digital-lines-moving-background-4770/1080p.mp4" type="video/mp4">
-    </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
-  </div>
-
-  <!-- Aura Background -->
+  <!-- Base Background -->
+  <div class="fixed inset-0 -z-50 bg-black"></div>
+  <!-- Unicorn Studio Arka Planı (Orijinal) -->
   <div class="aura-background-component fixed inset-0 w-screen h-screen mix-blend-screen -z-20 pointer-events-none"
     data-alpha-mask="60" style="
         mask-image: linear-gradient(
@@ -741,7 +734,7 @@
     </section>
 
     <!-- Logo Strip -->
-    <div class="border-b border-white/5 bg-black">
+    <div class="border-b border-white/5 bg-black relative z-10">
       <div class="max-w-[1400px] mx-auto overflow-hidden marquee-wrapper">
         <div
           class="marquee-content opacity-40 grayscale hover:grayscale-0 hover:opacity-80 transition-all duration-700 items-center">
@@ -781,7 +774,7 @@
     </div>
 
     <!-- Selected Projects -->
-    <section id="services" class="border-b border-white/5 bg-black relative">
+    <section id="services" class="border-b border-white/5 bg-black relative z-10">
       <div class="max-w-[1400px] mx-auto">
         <!-- Section Header -->
         <div class="grid grid-cols-1 md:grid-cols-4 border-b border-white/5">
@@ -793,7 +786,8 @@
               Case Index
             </h2>
           </div>
-          <div class="col-span-full md:col-span-3 p-6 md:p-10 flex items-center border-t border-white/5 md:border-t-0">
+          <div
+            class="col-span-full md:col-span-3 py-12 px-6 md:p-10 flex items-center border-t border-white/5 md:border-t-0">
             <p class="text-sm text-neutral-500 max-w-full md:max-w-lg text-center md:text-left">
               Transforming ideas into powerful digital solutions. From AI-powered platforms
               to scalable web applications, each project showcases cutting-edge technology
@@ -807,9 +801,9 @@
           <div class="absolute inset-0 bg-neutral-900/0 group-hover:bg-neutral-900/40 transition-colors duration-700">
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 h-[600px]">
+          <div class="grid grid-cols-1 md:grid-cols-2 md:h-[600px] h-auto">
             <!-- Visual Side -->
-            <div class="relative h-full border-r border-white/5 overflow-hidden">
+            <div class="relative h-[400px] md:h-full border-b md:border-b-0 md:border-r border-white/5 overflow-hidden">
               <div
                 class="absolute inset-0 bg-[url('https://raw.githubusercontent.com/YzrSalih/AI4Integrate-platform/main/screenshot.png')] bg-cover bg-center grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]">
               </div>
@@ -903,7 +897,7 @@
     </section>
 
     <!-- NEW: The "Wall" Section -->
-    <section id="solutions" class="relative bg-black border-b border-white/5 overflow-hidden">
+    <section id="solutions" class="relative bg-black border-b border-white/5 overflow-hidden z-10">
       <!-- Background Ambient Glow -->
       <div
         class="absolute right-0 top-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-900/20 blur-[120px] rounded-full pointer-events-none z-0">
@@ -913,7 +907,7 @@
 
         <!-- Left: Typography Content -->
         <div
-          class="w-full md:w-[40%] px-6 py-20 md:py-32 flex flex-col justify-center relative z-20 bg-gradient-to-r from-black via-black to-transparent">
+          class="w-full md:w-[40%] px-6 py-20 md:py-32 flex flex-col justify-center relative z-20 bg-black/60 backdrop-blur-md md:backdrop-blur-0 md:bg-gradient-to-r md:from-black md:via-black md:to-transparent">
           <div
             class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-white/10 rounded-full bg-white/5 self-start">
             <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse"></div>
@@ -1228,7 +1222,7 @@
             class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent z-10 pointer-events-none">
           </div>
           <div
-            class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10 pointer-events-none opacity-50">
+            class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10 pointer-events-none opacity-80 md:opacity-50">
           </div>
         </div>
       </div>
@@ -1792,9 +1786,11 @@
           <!-- Model 2: Retainer -->
           <div
             class="group border border-emerald-500/20 p-10 bg-emerald-900/10 hover:bg-emerald-900/20 transition-all duration-500 relative overflow-hidden">
-            <div
-              class="absolute top-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-600 border border-emerald-400 rounded-full">
-              <span class="text-[10px] font-mono text-white uppercase tracking-widest font-bold">Popular</span>
+            <div class="absolute top-4 inset-x-0 flex justify-center z-10">
+              <div
+                class="px-3 py-1 bg-emerald-600 border border-emerald-400 rounded-full shadow-lg shadow-emerald-500/20">
+                <span class="text-[10px] font-mono text-white uppercase tracking-widest font-bold">Popular</span>
+              </div>
             </div>
             <div class="absolute top-0 right-0 p-4">
               <iconify-icon icon="ph:infinity-light" width="32"
@@ -1883,7 +1879,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="bg-black border-b border-white/5 relative">
+    <section id="contact" class="bg-black border-b border-white/5 relative z-10">
       <div id="contact-root"></div>
     </section>
 
